@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "node-sass": "^7.0.1",
+    "nuxt3": "^3.0.0-27376999.6abf75d",
+    "postcss": "^8.4.5",
+    "sass": "^1.45.1",
+    "sass-loader": "^12.4.0"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.5.8",
+    "@vue/apollo-composable": "^4.0.0-alpha.16",
+    "graphql": "^16.3.0",
+    "lodash": "^4.17.21",
+    "vue-apollo": "^3.1.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "components.widgets.settings.language.label": "Idioma",
+  "components.widgets.settings.darkMode.label": "Modo escuro",
+
+  "pages.index.menu.label": "Começo",
+  "pages.ui.menu.label": "UI",
+  "pages.ui-design.menu.label": "Desenho",
+  "pages.ui-palette.menu.label": "Paleta",
+  "pages.ui-typography.menu.label": "Tipografia",
+  "pages.ui-components.menu.label": "Componentes",
+
+  "pages.ui.breadcrumbs": "UI",
+  "pages.ui-design.breadcrumbs": "Desenho",
+  "pages.ui-palette.breadcrumbs": "Palette",
+  "pages.ui-typography.breadcrumbs": "Typography",
+  "pages.ui-components.breadcrumbs": "Components",
+
+  "pages.projects.menu.label": "Projetos"
+}
