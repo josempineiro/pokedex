@@ -1,10 +1,14 @@
 <template>
   <div :class="classes">
     <div class="Pokedex" @click="toggle">
-      <div :class="!close ? 'Led Led_on' : 'Led'"></div>
-      <div :class="!close ? 'Led Led_1 Led_1_on' : 'Led Led_1'"></div>
-      <div :class="!close ? 'Led Led_2 Led_2_on' : 'Led Led_2'"></div>
-      <div :class="!close ? 'Led Led_3 Led_3_on' : 'Led Led_3'"></div>
+      <div class="PokedexHeader">
+        <Led class="BigLed" :on="!close" size="big" color="blue" />
+        <div class="Leds">
+          <Led class="ErrorLed" :on="!close" size="small" color="red" />
+          <Led class="WarningLed" :on="!close" size="small" color="yellow" />
+          <Led class="PowerLed" :on="!close" size="small" color="green" />
+        </div>
+      </div>
       <div class="PokedexPanel">
         <div class="DisplayFrame">
           <div class="Display">
@@ -22,9 +26,9 @@
           </div>
         </div>
       </div>
-      <div
-        :class="close ? 'PokedexCover PokedexCover_close' : 'PokedexCover'"
-      ></div>
+      <div class="PokedexCoverWrapper">
+        <PokedexCover :open="!close" />
+      </div>
     </div>
   </div>
 </template>
@@ -54,15 +58,25 @@ const toggle = () => {
 </script>
 
 <style lang="scss">
+.PokedexCoverWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 111;
+}
 .PokedexPage {
   padding: 64px;
   height: 100vh;
-  overflow: hidden;
   display: flex;
   width: 100%;
   justify-content: center;
 }
-
+.Leds {
+  display: flex;
+  gap: 12px;
+}
 .Pokedex {
   background: #d1092b;
   border-radius: 4px;
@@ -94,7 +108,7 @@ const toggle = () => {
     position: relative;
     top: 10%;
     height: 90%;
-    width: 90%;
+    width: 100%;
     padding-top: 25%;
     &::before {
       content: '';
@@ -134,21 +148,24 @@ const toggle = () => {
       );
     }
   }
-  .PokedexCover {
+  .PokedexCoverr {
     background: #d1092b;
     position: absolute;
     top: 10%;
-    left: 10%;
-    transform: translateX(100%);
-    width: 90%;
+    width: 100%;
     height: 90%;
     border-radius: 4px;
     background: #d1092b;
-    clip-path: polygon(0% 0%, 40% 0%, 60% 10%, 100% 10%, 100% 100%, 0 100%);
+    transform: rotateY(180deg);
+    clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0 100%);
     z-index: 11111;
     transition: transform 2s ease;
+    transform-origin: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &_close {
-      transform: translateX(-46px) rotateY(-180deg);
+      transform: rotateY(0);
     }
     &::before {
       content: '';
@@ -159,10 +176,10 @@ const toggle = () => {
       top: 0;
       left: 0;
       clip-path: polygon(
-        2px 2px,
-        calc(40% - 1px) 2px,
-        calc(60% - 1px) calc(10% + 2px),
-        calc(100% - 2px) calc(10% + 2px),
+        2px calc(10% + 2px),
+        calc(40% + 1px) calc(10% + 2px),
+        calc(60% + 1px) 2px,
+        calc(100% + 2px) 2px,
         calc(100% - 2px) calc(100% - 2px),
         2px calc(100% - 2px)
       );
@@ -177,13 +194,19 @@ const toggle = () => {
       height: 100%;
 
       clip-path: polygon(
-        4px 4px,
-        calc(40% - 2px) 4px,
-        calc(60% - 2px) calc(10% + 4px),
-        calc(100% - 4px) calc(10% + 4px),
+        4px calc(10% + 4px),
+        calc(40% + 2px) calc(10% + 4px),
+        calc(60% + 2px) 4px,
+        calc(100% - 4px) 4px,
         calc(100% - 4px) calc(100% - 4px),
         4px calc(100% - 4px)
       );
+    }
+    .CoverContent {
+      z-index: 1111;
+    }
+    &.PokedexCoverFront {
+      backface-visibility: hidden;
     }
   }
 }
@@ -294,191 +317,15 @@ const toggle = () => {
     right: 0;
   }
 }
-.Led {
+.PokedexHeader {
   position: absolute;
-  width: 75px;
-  height: 75px;
-  background: #186a9c;
-  border-radius: 99px;
-  border: 2px solid black;
-  border-radius: 100%;
-  top: 30px;
-  left: 50px;
-  transition: all 0.2s ease;
-  &::before {
-    transition: all 0.2s ease;
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    width: 50%;
-    height: 50%;
-    border-radius: 99px;
-    background: #76accd;
-  }
-  &::after {
-    transition: all 0.2s ease;
-    content: '';
-    position: absolute;
-    top: 32%;
-    left: 32%;
-    width: 50%;
-    height: 50%;
-    border-radius: 99px;
-    background: #186a9c;
-  }
-  &_on {
-    background: #70b0d7;
-    box-shadow: 0px 0px 12px 15px rgb(247 162 227 / 50%),
-      inset 0px 0px 12px 2px #c9ee58;
-    &::before {
-      background: #dce4e9;
-    }
-    &::after {
-      background: #76accd;
-    }
-  }
-}
-.Led_1 {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background: #575756;
-  border-radius: 99px;
-  border: 1px solid black;
-  border-radius: 100%;
-  top: 30px;
-  left: 150px;
-  transition: background, box-shadow 0.2s ease;
-  transition-property: background, box-shadow;
-  &::before {
-    transition: background, box-shadow 0.2s ease;
-    transition-property: background, box-shadow;
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    width: 50%;
-    height: 50%;
-    border-radius: 99px;
-    background: rgb(114, 114, 114);
-  }
-  &::after {
-    transition: background, box-shadow 0.2s ease;
-    transition-property: background, box-shadow;
-    content: '';
-    position: absolute;
-    top: 32%;
-    left: 32%;
-    width: 50%;
-    height: 50%;
-    border-radius: 99px;
-    background: #575756;
-  }
-  &_on {
-    background: #99061d;
-    box-shadow: 0px 0px 4px 4px #99061d, inset 0px 0px 4px 2px #99061d;
-    &::before {
-      background: hsl(41, 87%, 82%);
-    }
-    &::after {
-      background: #99061d;
-    }
-  }
-}
-.Led_2 {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background: #575756;
-  border-radius: 99px;
-  border: 1px solid black;
-  border-radius: 100%;
-  top: 30px;
-  left: 180px;
-  transition: background, box-shadow 0.2s ease;
-  transition-property: background, box-shadow;
-  &::before {
-    transition: background, box-shadow 0.2s ease;
-    transition-property: background, box-shadow;
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    width: 50%;
-    height: 50%;
-    border-radius: 99px;
-    background: rgb(114, 114, 114);
-  }
-  &::after {
-    transition: background, box-shadow 0.2s ease;
-    transition-property: background, box-shadow;
-    content: '';
-    position: absolute;
-    top: 32%;
-    left: 32%;
-    width: 50%;
-    height: 50%;
-    border-radius: 99px;
-    background: #575756;
-  }
-  &_on {
-    background: #eebe58;
-    box-shadow: 0px 0px 4px 4px #f9ce72, inset 0px 0px 4px 2px #eebe58;
-    &::before {
-      background: hsl(41, 87%, 82%);
-    }
-    &::after {
-      background: #eebe58;
-    }
-  }
-}
-.Led_3 {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background: #575756;
-  border-radius: 99px;
-  border: 1px solid black;
-  border-radius: 100%;
-  top: 30px;
-  left: 210px;
-  transition: background, box-shadow 0.2s ease;
-  transition-property: background, box-shadow;
-  &::before {
-    transition: background, box-shadow 0.2s ease;
-    transition-property: background, box-shadow;
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    width: 50%;
-    height: 50%;
-    border-radius: 99px;
-    background: rgb(114, 114, 114);
-  }
-  &::after {
-    transition: background, box-shadow 0.2s ease;
-    transition-property: background, box-shadow;
-    content: '';
-    position: absolute;
-    top: 32%;
-    left: 32%;
-    width: 50%;
-    height: 50%;
-    border-radius: 99px;
-    background: #575756;
-  }
-  &_on {
-    background: #387d43;
-    box-shadow: 0px 0px 4px 4px #387d43, inset 0px 0px 4px 2px #387d43;
-    &::before {
-      background: hsl(41, 87%, 82%);
-    }
-    &::after {
-      background: #387d43;
-    }
-  }
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding: 32px;
+  gap: 32px;
+  align-items: flex-start;
 }
 
 @media screen and (max-width: 768px) {
