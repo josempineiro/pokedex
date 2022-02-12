@@ -1,6 +1,6 @@
 <template>
   <div :class="classes">
-    <div class="Pokedex" @click="toggle">
+    <div class="Pokedex">
       <div class="PokedexHeader">
         <Led class="BigLed" :on="!close" size="big" color="blue" />
         <div class="Leds">
@@ -27,7 +27,11 @@
         </div>
       </div>
       <div class="PokedexCoverWrapper">
-        <PokedexCover :open="!close" />
+        <PokedexCover
+          :open="!close"
+          @close="close = true"
+          @open="close = false"
+        />
       </div>
     </div>
   </div>
@@ -65,6 +69,7 @@ const toggle = () => {
   width: 100%;
   height: 90%;
   z-index: 1111;
+  pointer-events: none;
 }
 .PokedexPage {
   padding: 64px;

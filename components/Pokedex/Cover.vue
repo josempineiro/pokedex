@@ -1,6 +1,9 @@
 <template>
   <div class="PokedexCoverScene">
-    <div :class="[classes, open ? 'PokedexCover_open' : 'PokedexCover_close']">
+    <div
+      :class="[classes, open ? 'PokedexCover_open' : 'PokedexCover_close']"
+      @click="open ? emit('close') : emit('open')"
+    >
       <div class="PokedexCoverFace PokedexCoverFace_front"></div>
       <div class="PokedexCoverFace PokedexCoverFace_back">CONTENT</div>
       <div class="PokedexCoverFace PokedexCoverFace_right"></div>
@@ -19,6 +22,7 @@ const props = defineProps({
     default: false,
   },
 })
+const emit = defineEmits(['open', 'close'])
 const classes = defineClasses('PokedexCover')
 </script>
 
@@ -39,6 +43,7 @@ const classes = defineClasses('PokedexCover')
   transition-property: transform, right;
   transition-duration: 1s;
   transition-timing-function: ease;
+  pointer-events: all;
 }
 .PokedexCover_open {
   transform: rotateY(180deg);
