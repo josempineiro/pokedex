@@ -60,11 +60,11 @@ const toggle = () => {
 <style lang="scss">
 .PokedexCoverWrapper {
   position: absolute;
-  top: 0;
+  top: 10%;
   left: 0;
   width: 100%;
-  height: 100%;
-  z-index: 111;
+  height: 90%;
+  z-index: 1111;
 }
 .PokedexPage {
   padding: 64px;
@@ -146,67 +146,6 @@ const toggle = () => {
         calc(100% - 4px) calc(100% - 4px),
         4px calc(100% - 4px)
       );
-    }
-  }
-  .PokedexCoverr {
-    background: #d1092b;
-    position: absolute;
-    top: 10%;
-    width: 100%;
-    height: 90%;
-    border-radius: 4px;
-    background: #d1092b;
-    transform: rotateY(180deg);
-    clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0 100%);
-    z-index: 11111;
-    transition: transform 2s ease;
-    transform-origin: right;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &_close {
-      transform: rotateY(0);
-    }
-    &::before {
-      content: '';
-      position: absolute;
-      background: black;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      clip-path: polygon(
-        2px calc(10% + 2px),
-        calc(40% + 1px) calc(10% + 2px),
-        calc(60% + 1px) 2px,
-        calc(100% + 2px) 2px,
-        calc(100% - 2px) calc(100% - 2px),
-        2px calc(100% - 2px)
-      );
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #d1092b;
-      width: 100%;
-      height: 100%;
-
-      clip-path: polygon(
-        4px calc(10% + 4px),
-        calc(40% + 2px) calc(10% + 4px),
-        calc(60% + 2px) 4px,
-        calc(100% - 4px) 4px,
-        calc(100% - 4px) calc(100% - 4px),
-        4px calc(100% - 4px)
-      );
-    }
-    .CoverContent {
-      z-index: 1111;
-    }
-    &.PokedexCoverFront {
-      backface-visibility: hidden;
     }
   }
 }

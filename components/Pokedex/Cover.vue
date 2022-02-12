@@ -30,15 +30,19 @@ const classes = defineClasses('PokedexCover')
 }
 
 .PokedexCover {
-  width: 100%;
+  width: 90%;
   height: 100%;
-  position: relative;
+  right: 10%;
+  position: absolute;
   transform-style: preserve-3d;
   transform-origin: right;
-  transition: transform 20s ease;
+  transition-property: transform, right;
+  transition-duration: 1s;
+  transition-timing-function: ease;
 }
 .PokedexCover_open {
   transform: rotateY(180deg);
+  right: 0%;
 }
 .PokedexCover_close {
   transform: rotateY(0deg);
@@ -60,12 +64,52 @@ const classes = defineClasses('PokedexCover')
   height: 100%;
   transform: rotateY(0deg) translateZ(5px);
   clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0 100%);
+  &::before,
+  &::after {
+    content: '';
+    z-index: 1;
+    height: 1px;
+    position: absolute;
+    background-color: black;
+  }
+  &::before {
+    width: 26%;
+    top: -1px;
+    right: 40%;
+    transform: rotate(-40deg);
+    transform-origin: right;
+  }
+  &::after {
+    width: 40%;
+    top: calc(10% - 1px);
+    left: 0;
+  }
 }
 .PokedexCoverFace_back {
   width: 100%;
   height: 100%;
   transform: rotateY(180deg) translateZ(5px);
   clip-path: polygon(0% 0%, 40% 0%, 60% 10%, 100% 10%, 100% 100%, 0 100%);
+  &::before,
+  &::after {
+    content: '';
+    z-index: 1;
+    height: 1px;
+    position: absolute;
+    background-color: black;
+  }
+  &::before {
+    width: 26%;
+    top: -1px;
+    left: 40%;
+    transform: rotate(40deg);
+    transform-origin: left;
+  }
+  &::after {
+    width: 40%;
+    top: calc(10% - 1px);
+    right: 0;
+  }
 }
 .PokedexCoverFace_right {
   width: 10px;
