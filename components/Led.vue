@@ -20,7 +20,7 @@ const props = defineProps({
     class: true,
     default: 'small',
     validator() {
-      return ['big', 'small']
+      return ['big', 'medium', 'small']
     },
   },
   color: {
@@ -49,6 +49,11 @@ const classes = defineClasses('Led')
   &_small {
     width: 15px;
     height: 15px;
+    --led-border-width: 1px;
+  }
+  &_medium {
+    width: 30px;
+    height: 30px;
     --led-border-width: 1px;
   }
   &_big {
@@ -89,6 +94,10 @@ const classes = defineClasses('Led')
   &_small .Base {
     border-color: white;
     --led-border-width: 1px;
+  }
+  &_medium .Base {
+    border-color: white;
+    --led-border-width: 2px;
   }
   &_big .Base {
     border-color: white;
