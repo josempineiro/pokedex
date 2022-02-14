@@ -1,17 +1,15 @@
 <template>
-  <div class="PokedexCoverScene">
-    <div
-      :class="[classes, open ? 'PokedexCover_open' : 'PokedexCover_close']"
-      @click="open ? emit('close') : emit('open')"
-    >
-      <div class="PokedexCoverFace PokedexCoverFace_front"></div>
-      <div class="PokedexCoverFace PokedexCoverFace_back">CONTENT</div>
-      <div class="PokedexCoverFace PokedexCoverFace_right"></div>
-      <div class="PokedexCoverFace PokedexCoverFace_diagonal"></div>
-      <div class="PokedexCoverFace PokedexCoverFace_left"></div>
-      <div class="PokedexCoverFace PokedexCoverFace_top"></div>
-      <div class="PokedexCoverFace PokedexCoverFace_bottom"></div>
-    </div>
+  <div
+    :class="[classes, open ? 'PokedexCover_open' : 'PokedexCover_close']"
+    @click="open ? emit('close') : emit('open')"
+  >
+    <div class="PokedexCoverFace PokedexCoverFace_front"></div>
+    <div class="PokedexCoverFace PokedexCoverFace_back">CONTENT</div>
+    <div class="PokedexCoverFace PokedexCoverFace_right"></div>
+    <div class="PokedexCoverFace PokedexCoverFace_diagonal"></div>
+    <div class="PokedexCoverFace PokedexCoverFace_left"></div>
+    <div class="PokedexCoverFace PokedexCoverFace_top"></div>
+    <div class="PokedexCoverFace PokedexCoverFace_bottom"></div>
   </div>
 </template>
 
@@ -27,12 +25,6 @@ const classes = defineClasses('PokedexCover')
 </script>
 
 <style lang="scss">
-.PokedexCoverScene {
-  width: 100%;
-  height: 100%;
-  perspective: 2000px;
-}
-
 .PokedexCover {
   width: 90%;
   height: 100%;
@@ -41,8 +33,8 @@ const classes = defineClasses('PokedexCover')
   transform-style: preserve-3d;
   transform-origin: right;
   transition-property: transform, right;
-  transition-duration: 1s;
-  transition-timing-function: ease;
+  transition-duration: 2s;
+  transition-timing-function: cubic-bezier(0.84, -0.01, 0.15, 1);
   pointer-events: all;
 }
 .PokedexCover_open {

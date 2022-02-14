@@ -1,12 +1,13 @@
 <template>
-  <div :class="classes" v-if="pokemonInfo">
+  <div v-if="loading">Loading...</div>
+  <div :class="classes" v-if="result">
     <img
       class="PokemonAvatar"
-      :src="`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemonInfo.id}.svg`"
+      :src="`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${result.pokemon.id}.svg`"
     />
     <div class="PokemonInfo">
-      <span> #{{ pokemonInfo.id }}</span>
-      <span class="PokemonName"> {{ pokemonInfo.name }}</span>
+      <span> #{{ result.pokemon.id }}</span>
+      <span class="PokemonName"> {{ result.pokemon.name }}</span>
       <PokemonTypes :id="id" />
     </div>
   </div>
@@ -32,17 +33,21 @@ const { loading, result } = useQuery(POKEMON_QUERY, {
   name: props.pokemon?.name || props.id,
 })
 const pokemonInfo = useResult(result)
-console.log(pokemonInfo.value)
+watch(result, (value) => {
+  console.log(value)
+})
 </script>
 
 <style lang="scss">
 .Pokemon {
   width: 100%;
-  padding: 16px;
+  padding: 16px 16px 24px;
   flex-basis: fit-content;
 }
 .PokemonAvatar {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .PokemonInfo {
   padding: 0 16px;

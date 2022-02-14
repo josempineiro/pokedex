@@ -1,5 +1,5 @@
 <template>
-  <Pokedex2D v-if="variant === '2D'" />
+  <Pokedex2D v-if="variant === '2D'"><slot></slot></Pokedex2D>
   <div v-else :class="pokedexClasses">
     <PokedexCover :open="!close" @close="close = true" @open="close = false" />
   </div>

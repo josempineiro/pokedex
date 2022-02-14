@@ -10,32 +10,45 @@
             <Led class="PowerLed" :on="!close" size="small" color="green" />
           </div>
         </div>
-        <div class="Panel">
-          <div class="DisplayFrame">
-            <div class="DisplayLeds">
-              <Led class="ErrorLed" :on="!close" size="small" color="red" />
-              <Led class="ErrorLed" :on="!close" size="small" color="red" />
-            </div>
-            <div class="Display"></div>
-
-            <div class="DisplayControls">
-              <Led class="ErrorLed" :on="!close" size="medium" color="red" />
-              <div class="Gratting">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+        <CssFlexBox class="MainPanel">
+          <slot>
+            <PokedexMainDisplay> </PokedexMainDisplay>
+            <CssFlexBox gap="1" align="stretch" justify="space-between">
+              <PokedexButton class="Button" variant="circle" />
+              <CssFlexBox direction="column" gap="2">
+                <CssFlexBox direction="row" gap="1">
+                  <PokedexButton
+                    class="Button"
+                    variant="rectangle"
+                    color="red"
+                  />
+                  <PokedexButton
+                    class="Button"
+                    variant="rectangle"
+                    color="blue"
+                  />
+                </CssFlexBox>
+                <CssFlexBox grow="1">
+                  <PokedexDisplay
+                    id="secondary-display"
+                    variant="secondary"
+                    :on="!close"
+                  >
+                  </PokedexDisplay>
+                </CssFlexBox>
+              </CssFlexBox>
+              <div>
+                <PokedexCrossButton />
               </div>
-            </div>
-          </div>
-        </div>
+            </CssFlexBox>
+          </slot>
+        </CssFlexBox>
       </div>
     </div>
     <div class="Hinge"></div>
     <div class="Cover">
       <div class="CoverPanel"></div>
     </div>
-    <slot></slot>
   </div>
 </template>
 
@@ -51,6 +64,7 @@ const props = defineProps({
   },
 })
 const classes = defineClasses('Pokedex2D')
+const close = ref(false)
 </script>
 
 <style lang="scss">
@@ -99,7 +113,9 @@ const classes = defineClasses('Pokedex2D')
       padding: 7% 12%;
       gap: 32px;
     }
-    .Panel {
+    .MainPanel {
+      display: flex;
+      flex-direction: column;
       flex: 1;
       position: relative;
       background: var(--pokedex-shadow-color);
@@ -251,67 +267,12 @@ const classes = defineClasses('Pokedex2D')
       transform: translateY(16px);
     }
   }
-  .DisplayFrame {
-    background: #d3d3d3;
-    border-radius: 8px;
-    padding: 10% 10% 15%;
-    width: 100%;
-    height: 60%;
-    align-self: flex-start;
-    margin: 0 auto;
-    z-index: 1;
+  .Controls {
     display: flex;
-    position: relative;
-    box-shadow: 3px 6px 0px 0px var(--pokedex-shadow-color);
-    clip-path: polygon(
-      0% 0%,
-      calc(100% + 3px) 0%,
-      calc(100% + 3px) calc(100% + 6px),
-      15% calc(100% + 6px),
-      0% 90%
-    );
-    .DisplayLeds {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 12%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .Display {
-      background: black;
-      height: 100%;
-      width: 100%;
-      display: flex;
-    }
-    .DisplayControls {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 17%;
-      padding: 0 10% 0 20%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .Gratting {
-      width: 30%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 5% 0;
-      > * {
-        width: 100%;
-        height: 10%;
-        background: black;
-        border-radius: 9999px;
-      }
-    }
+    align-items: flex-start;
+
+    justify-content: flex-start;
+    gap: 16px;
   }
 }
 </style>

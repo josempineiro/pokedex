@@ -1,14 +1,8 @@
 <template>
-  <Pokemon id="1" />
+  <div>ASDF</div>
 </template>
 
 <script setup>
-definePageMeta({
-  layout: 'clear',
-  menu: {
-    position: 2,
-  },
-})
 </script>
 
 <style>
