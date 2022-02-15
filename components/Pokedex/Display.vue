@@ -41,6 +41,7 @@ const classes = defineClasses('Display')
     left: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none;
     background-image: linear-gradient(
       -45deg,
       white 10%,
