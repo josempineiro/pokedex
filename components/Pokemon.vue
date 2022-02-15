@@ -1,5 +1,7 @@
 <template>
-  <div v-if="loading">Loading...</div>
+  <div :class="[...classes, loading ? 'Pokemon_loading' : '']" v-if="loading">
+    Loading...
+  </div>
   <div :class="classes" v-if="result">
     <img
       class="PokemonAvatar"
@@ -32,17 +34,12 @@ import { POKEMON_QUERY } from '@/api/pokemon/queries'
 const { loading, result } = useQuery(POKEMON_QUERY, {
   name: props.pokemon?.name || props.id,
 })
-const pokemonInfo = useResult(result)
-watch(result, (value) => {
-  console.log(value)
-})
 </script>
 
 <style lang="scss">
 .Pokemon {
   width: 100%;
-  padding: 16px 16px 24px;
-  flex-basis: fit-content;
+  padding: 16px 16px 42px;
 }
 .PokemonAvatar {
   width: 100%;

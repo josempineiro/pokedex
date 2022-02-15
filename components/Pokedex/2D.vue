@@ -10,38 +10,8 @@
             <Led class="PowerLed" :on="!close" size="small" color="green" />
           </div>
         </div>
-        <CssFlexBox class="MainPanel">
-          <slot>
-            <PokedexMainDisplay> </PokedexMainDisplay>
-            <CssFlexBox gap="1" align="stretch" justify="space-between">
-              <PokedexButton class="Button" variant="circle" />
-              <CssFlexBox direction="column" gap="2">
-                <CssFlexBox direction="row" gap="1">
-                  <PokedexButton
-                    class="Button"
-                    variant="rectangle"
-                    color="red"
-                  />
-                  <PokedexButton
-                    class="Button"
-                    variant="rectangle"
-                    color="blue"
-                  />
-                </CssFlexBox>
-                <CssFlexBox grow="1">
-                  <PokedexDisplay
-                    id="secondary-display"
-                    variant="secondary"
-                    :on="!close"
-                  >
-                  </PokedexDisplay>
-                </CssFlexBox>
-              </CssFlexBox>
-              <div>
-                <PokedexCrossButton />
-              </div>
-            </CssFlexBox>
-          </slot>
+        <CssFlexBox class="MainPanelWrapper">
+          <slot> </slot>
         </CssFlexBox>
       </div>
     </div>
@@ -88,8 +58,10 @@ const close = ref(false)
   position: relative;
   display: flex;
   justify-self: center;
-  width: min(80vw, 110vh);
-  height: min(66vw, 88vh);
+  width: 100%;
+  height: 100%;
+  max-width: min(80vw, 110vh);
+  max-height: min(66vw, 88vh);
   .Case {
     display: flex;
     flex: 1;
@@ -112,64 +84,6 @@ const close = ref(false)
       display: flex;
       padding: 7% 12%;
       gap: 32px;
-    }
-    .MainPanel {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      position: relative;
-      background: var(--pokedex-shadow-color);
-      height: 90%;
-      clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0% 100%);
-      padding: 25% 10% 10%;
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        pointer-events: none;
-      }
-      &::before {
-        top: 2%;
-        width: 104%;
-        height: 100%;
-        left: 0;
-        background: var(--pokedex-main-color);
-        opacity: 0.6;
-        clip-path: polygon(
-          0% 10%,
-          40% 10%,
-          60% 0%,
-          100% 0%,
-          100% 100%,
-          0% 100%
-        );
-        z-index: -1;
-      }
-      &::after {
-        top: 2%;
-        width: 92%;
-        left: 4%;
-        height: calc(96% - 0px);
-        background: var(--pokedex-shadow-color);
-        transform: rotateY(180deg);
-        z-index: -1;
-        clip-path: polygon(
-          0% 0%,
-          40% 0%,
-          60% 10%,
-          100% 10%,
-          100% 100%,
-          0% 100%,
-          0% 4px,
-          4px 4px,
-          4px calc(100% - 4px),
-          calc(100% - 4px) calc(100% - 4px),
-          calc(100% - 4px) calc(10% + 4px),
-          calc(60% - 2px) calc(10% + 4px),
-          calc(40% - 2px) 4px,
-          0% 4px
-        );
-      }
     }
   }
   .Cover {
@@ -273,6 +187,58 @@ const close = ref(false)
 
     justify-content: flex-start;
     gap: 16px;
+  }
+}
+.MainPanelWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  background: var(--pokedex-shadow-color);
+  height: 90%;
+  max-height: 100%;
+  clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0% 100%);
+  padding: 25% 10% 10%;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+  &::before {
+    top: 2%;
+    width: 104%;
+    height: 100%;
+    left: 0;
+    background: var(--pokedex-main-color);
+    opacity: 0.6;
+    clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0% 100%);
+    z-index: -1;
+  }
+  &::after {
+    top: 2%;
+    width: 92%;
+    left: 4%;
+    height: calc(96% - 0px);
+    background: var(--pokedex-shadow-color);
+    transform: rotateY(180deg);
+    z-index: -1;
+    clip-path: polygon(
+      0% 0%,
+      40% 0%,
+      60% 10%,
+      100% 10%,
+      100% 100%,
+      0% 100%,
+      0% 4px,
+      4px 4px,
+      4px calc(100% - 4px),
+      calc(100% - 4px) calc(100% - 4px),
+      calc(100% - 4px) calc(10% + 4px),
+      calc(60% - 2px) calc(10% + 4px),
+      calc(40% - 2px) 4px,
+      0% 4px
+    );
   }
 }
 </style>

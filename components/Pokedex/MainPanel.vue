@@ -1,5 +1,5 @@
 <template>
-  <CssFlexBox gap="2" direction="column" grow="1">
+  <CssFlexBox gap="2" direction="column" grow="1" class="MainPanel">
     <PokedexMainDisplay>
       <slot></slot>
     </PokedexMainDisplay>
@@ -54,50 +54,7 @@ const classes = defineClasses('MainPanel')
   flex-direction: column;
   flex: 1;
   position: relative;
-  background: var(--pokedex-shadow-color);
   height: 90%;
-  clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0% 100%);
-  padding: 25% 10% 10%;
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    pointer-events: none;
-  }
-  &::before {
-    top: 2%;
-    width: 104%;
-    height: 100%;
-    left: 0;
-    background: var(--pokedex-main-color);
-    opacity: 0.6;
-    clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0% 100%);
-    z-index: -1;
-  }
-  &::after {
-    top: 2%;
-    width: 92%;
-    left: 4%;
-    height: calc(96% - 0px);
-    background: var(--pokedex-shadow-color);
-    transform: rotateY(180deg);
-    z-index: -1;
-    clip-path: polygon(
-      0% 0%,
-      40% 0%,
-      60% 10%,
-      100% 10%,
-      100% 100%,
-      0% 100%,
-      0% 4px,
-      4px 4px,
-      4px calc(100% - 4px),
-      calc(100% - 4px) calc(100% - 4px),
-      calc(100% - 4px) calc(10% + 4px),
-      calc(60% - 2px) calc(10% + 4px),
-      calc(40% - 2px) 4px,
-      0% 4px
-    );
-  }
+  max-height: 100%;
 }
 </style>
