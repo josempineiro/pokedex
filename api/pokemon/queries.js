@@ -37,6 +37,43 @@ export const POKEMON_QUERY = gql`
           name
         }
       }
+      stats {
+        base_stat
+        effort
+        stat {
+          id
+          name
+        }
+      }
+      base_experience
+      height
+
+      is_default
+      location_area_encounters
+      order
+      species {
+        id
+        url
+        name
+      }
+      weight
+      status
+      message
+    }
+  }
+`
+
+export const POKEMON_STATS_QUERY = gql`
+  query pokemon($name: String!) {
+    pokemon(name: $name) {
+      id
+      stats {
+        base_stat
+        effort
+        stat {
+          name
+        }
+      }
     }
   }
 `

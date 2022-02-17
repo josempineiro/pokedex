@@ -7,11 +7,11 @@
 </template>
 
 <script setup>
-const classes = defineClasses('Layout')
+const classes = defineClasses('Wrapper')
 </script>
 
 <style lang="scss">
-.Layout {
+.Wrapper {
   padding: 64px;
   height: 100%;
   display: flex;

@@ -72,6 +72,9 @@ const classes = defineClasses('Display')
     &.Display_secondary {
       --display-bg-color: #4da55a;
     }
+    &::after {
+      opacity: 0.04;
+    }
   }
 }
 </style>

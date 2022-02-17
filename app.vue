@@ -12,7 +12,9 @@
       <Meta name="theme-color" content="#ffffff" />
     </Head>
     <Body>
-      <NuxtPage />
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
     </Body>
   </Html>
 </template>

@@ -4,7 +4,13 @@
       <slot></slot>
     </PokedexMainDisplay>
     <CssFlexBox gap="1" align="stretch" justify="space-between">
-      <PokedexButton class="Button" variant="circle" />
+      <CssFlexBox basis="auto" grow="1" shrink="0">
+        <PokedexButton
+          class="Button"
+          variant="circle"
+          @click="(event) => $emit('click-main', event)"
+        />
+      </CssFlexBox>
       <CssFlexBox direction="column" gap="2">
         <CssFlexBox direction="row" gap="1">
           <PokedexButton class="Button" variant="rectangle" color="red" />
@@ -44,6 +50,7 @@ const emit = defineEmits([
   'click-bottom',
   'click-right',
   'click-left',
+  'click-main',
 ])
 const classes = defineClasses('MainPanel')
 </script>
@@ -54,7 +61,7 @@ const classes = defineClasses('MainPanel')
   flex-direction: column;
   flex: 1;
   position: relative;
-  height: 90%;
+  height: 100%;
   max-height: 100%;
 }
 </style>

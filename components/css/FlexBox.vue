@@ -54,6 +54,20 @@ const props = defineProps({
       useName: true,
     },
   },
+  shrink: {
+    type: [String, Number],
+    default: 1,
+    class: {
+      useName: true,
+    },
+  },
+  basis: {
+    type: [String, Number],
+    default: 1,
+    class: {
+      useName: true,
+    },
+  },
 })
 const classes = defineClasses('FlexBox')
 </script>
@@ -103,7 +117,21 @@ const classes = defineClasses('FlexBox')
   }
   &_grow_1 {
     flex-grow: 1;
-    width: 100%;
+  }
+  &_grow_0 {
+    flex-grow: 0;
+  }
+  &_shrink_1 {
+    flex-shrink: 1;
+  }
+  &_shrink_0 {
+    flex-shrink: 0;
+  }
+  &_basis_auto {
+    flex-basis: auto;
+  }
+  &_shrink_0 {
+    flex-shrink: 0;
   }
 }
 </style>
