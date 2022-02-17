@@ -64,8 +64,6 @@ const emit = defineEmits([
     background: transparent;
   }
   .Button {
-    width: 100%;
-    height: 100%;
   }
 }
 </style>

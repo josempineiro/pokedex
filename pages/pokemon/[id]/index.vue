@@ -5,10 +5,12 @@
     @click-right="next"
     @click-main="goStats"
   >
-    <Pokemon :id="route.params.id" />
-    <template #secondary-display>
-      <div>ASDF</div>
-    </template>
+    <ClientOnly>
+      <Pokemon :id="route.params.id" />
+      <template #secondary-display>
+        <div>ASDF</div>
+      </template>
+    </ClientOnly>
   </PokedexMainPanel>
 </template>
 
