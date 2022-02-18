@@ -12,7 +12,7 @@
       <Meta name="theme-color" content="#ffffff" />
     </Head>
     <Body>
-      <NuxtLayout>
+      <NuxtLayout name="default">
         <NuxtPage />
       </NuxtLayout>
     </Body>

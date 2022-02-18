@@ -18,10 +18,6 @@
 const route = useRoute()
 const router = useRouter()
 
-definePageMeta({
-  layout: 'pokedex',
-})
-
 const goStats = () => {
   router.push({
     name: 'pokemon-id-stats',

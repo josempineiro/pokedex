@@ -9,17 +9,21 @@
   "devDependencies": {
     "autoprefixer": "^10.4.0",
     "node-sass": "^7.0.1",
-    "nuxt3": "^3.0.0-27376999.6abf75d",
+    "nuxt3": "latest",
     "postcss": "^8.4.5",
+    "resolve": "1.20.0",
     "sass": "^1.45.1",
-    "replace-in-file": "^6.3.2",
     "sass-loader": "^12.4.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.8",
+    "@apollo/client": "^3.5.9",
     "@vue/apollo-composable": "^4.0.0-alpha.16",
     "graphql": "^16.3.0",
     "lodash": "^4.17.21",
+    "replace-in-file": "^6.3.2",
     "vue-apollo": "^3.1.0"
+  },
+  "resolutions": {
+    "resolve": "1.20.0"
   }
 }

@@ -15,11 +15,6 @@
 const route = useRoute()
 const router = useRouter()
 
-definePageMeta({
-  layout: 'pokedex',
-  key: (route) => route.fullPath,
-})
-
 const goProfile = () => {
   router.push({
     name: 'pokemon-id',
