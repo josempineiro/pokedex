@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client/core'
+import { gql } from '@apollo/client/core/core.cjs'
 
 export const POKEMONS_QUERY = gql`
   query pokemons($limit: Int, $offset: Int) {

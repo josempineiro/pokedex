@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "nuxi dev",
-    "build": "nuxi build",
+    "build": "nuxi build && node scripts/fixServer",
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
@@ -12,6 +12,7 @@
     "nuxt3": "^3.0.0-27376999.6abf75d",
     "postcss": "^8.4.5",
     "sass": "^1.45.1",
+    "replace-in-file": "^6.3.2",
     "sass-loader": "^12.4.0"
   },
   "dependencies": {

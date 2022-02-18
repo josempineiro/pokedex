@@ -1,5 +1,5 @@
 import { defineNuxtPlugin } from '#app'
-import { ApolloClient, InMemoryCache } from '@apollo/client/core'
+import { ApolloClient, InMemoryCache } from '@apollo/client/core/core.cjs'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 
 export default defineNuxtPlugin((nuxtApp) => {
