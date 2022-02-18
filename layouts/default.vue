@@ -1,6 +1,6 @@
 <template>
   <div :class="classes">
-    <slot></slot>
+    <Pokedex2D><slot></slot></Pokedex2D>
   </div>
 </template>
 
@@ -10,17 +10,11 @@ const classes = defineClasses('Layout')
 
 <style lang="scss">
 .Layout {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  flex-direction: column;
-  position: relative;
+  padding: 64px;
   height: 100%;
+  display: flex;
   width: 100%;
-  overflow: hidden;
-  background-color: var(--color-background);
-  transition-property: background-color;
-  transition-duration: 200ms;
-  transition-timing-function: ease-in-out;
+  justify-content: center;
+  align-items: center;
 }
 </style>

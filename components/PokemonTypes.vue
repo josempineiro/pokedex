@@ -33,13 +33,12 @@ const props = defineProps({
   },
 })
 const classes = defineClasses('PokemonType')
-import { useQuery, useResult } from '@vue/apollo-composable'
-import { POKEMON_QUERY } from '@/api/pokemon/queries'
 
-const { loading, result } = useQuery(POKEMON_QUERY, {
-  name: props.id,
-})
-const pokemonInfo = useResult(result)
+const { data, loading } = await useAsyncData('pokemonTypes', () =>
+  $fetch(`https://pokeapi.co/api/v2/pokemon/${props.pokemon?.name || props.id}`)
+)
+
+const pokemonInfo = data
 </script>
 
 <style lang="scss">

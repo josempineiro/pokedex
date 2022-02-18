@@ -5,12 +5,10 @@
     @click-right="next"
     @click-main="goStats"
   >
-    <ClientOnly>
-      <Pokemon :id="route.params.id" />
-      <template #secondary-display>
-        <div>ASDF</div>
-      </template>
-    </ClientOnly>
+    <Pokemon :id="route.params.id" />
+    <template #secondary-display>
+      <div>ASDF</div>
+    </template>
   </PokedexMainPanel>
 </template>
 
@@ -19,7 +17,7 @@ const route = useRoute()
 const router = useRouter()
 
 definePageMeta({
-  layout: 'pokedex',
+  layout: 'default',
 })
 
 const goStats = () => {
