@@ -83,7 +83,7 @@ const close = ref(false)
       height: 10%;
       display: flex;
       padding: 7% 12%;
-      gap: 48px;
+      gap: 32px;
     }
   }
   .Cover {
