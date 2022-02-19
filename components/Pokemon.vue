@@ -2,14 +2,14 @@
   <div :class="[...classes, loading ? 'Pokemon_loading' : '']" v-if="loading">
     Loading...
   </div>
-  <div :class="classes" v-if="result">
+  <div :class="classes" v-if="data">
     <img
       class="PokemonAvatar"
-      :src="`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${result.pokemon.id}.svg`"
+      :src="`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${data.id}.svg`"
     />
     <div class="PokemonInfo">
-      <span> #{{ result.pokemon.id }}</span>
-      <span class="PokemonName"> {{ result.pokemon.name }}</span>
+      <span> #{{ data.id }}</span>
+      <span class="PokemonName"> {{ data.name }}</span>
       <PokemonTypes :id="id" />
     </div>
   </div>
@@ -29,9 +29,8 @@ const props = defineProps({
 const classes = defineClasses('Pokemon')
 
 const { data, loading } = await useAsyncData('pokemon', () =>
-  $fetch(`https://pokeapi.co/api/v2/pokemon/${props.pokemon?.name || props.id}`)
+  $fetch(`https://pokeapi.co/api/v2/pokemon/${props.id}`)
 )
-debugger
 </script>
 
 <style lang="scss">

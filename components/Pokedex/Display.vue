@@ -34,6 +34,7 @@ const classes = defineClasses('Display')
   background: var(--display-bg-color);
   align-items: stretch;
   justify-content: center;
+  overflow: hidden;
   &::after {
     content: '';
     position: absolute;

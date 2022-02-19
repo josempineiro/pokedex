@@ -35,7 +35,10 @@ const next = () => {
 
 const prev = () => {
   router.push(
-    route.fullPath.replace(route.params.id, `${Number(route.params.id) - 1}`)
+    route.fullPath.replace(
+      route.params.id,
+      `${Math.max(1, Number(route.params.id) - 1)}`
+    )
   )
 }
 </script>

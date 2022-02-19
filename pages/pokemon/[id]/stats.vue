@@ -17,7 +17,7 @@ const router = useRouter()
 
 definePageMeta({
   layout: 'pokedex',
-  key: (route) => route.fullPath,
+  key: false,
 })
 
 const goProfile = () => {
@@ -40,7 +40,7 @@ const prev = () => {
   router.push(
     route.fullPath.replace(
       route.params.id,
-      `${Number(Math.max(0, route.params.id) - 1)}`
+      `${Math.max(1, Number(route.params.id) - 1)}`
     )
   )
 }
