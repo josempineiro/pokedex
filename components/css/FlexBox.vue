@@ -115,6 +115,9 @@ const classes = defineClasses('FlexBox')
   &_gap_2 {
     gap: 2rem;
   }
+  &_grow_2 {
+    flex-grow: 2;
+  }
   &_grow_1 {
     flex-grow: 1;
   }

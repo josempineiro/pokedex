@@ -11,7 +11,7 @@
           @click="(event) => $emit('click-main', event)"
         />
       </CssFlexBox>
-      <CssFlexBox direction="column" gap="2">
+      <CssFlexBox direction="column" gap="2" grow="2">
         <CssFlexBox direction="row" gap="1">
           <PokedexButton class="Button" variant="rectangle" color="red" />
           <PokedexButton class="Button" variant="rectangle" color="blue" />
