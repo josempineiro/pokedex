@@ -4,11 +4,11 @@
       <div class="CasePanel">
         <div class="TopPanel">
           <Led class="BigLed" :on="!close" size="big" color="blue" />
-          <div class="Leds">
+          <CssFlexBox class="Leds" gap="1">
             <Led class="ErrorLed" :on="!close" size="small" color="red" />
             <Led class="WarningLed" :on="!close" size="small" color="yellow" />
             <Led class="PowerLed" :on="!close" size="small" color="green" />
-          </div>
+          </CssFlexBox>
         </div>
         <CssFlexBox class="MainPanelWrapper">
           <slot> </slot>
@@ -83,7 +83,7 @@ const close = ref(false)
       height: 10%;
       display: flex;
       padding: 7% 12%;
-      gap: 32px;
+      gap: 48px;
     }
   }
   .Cover {
