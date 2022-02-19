@@ -26,12 +26,7 @@ const {
   })
 )
 
-watch(
-  () => props.id,
-  async (newId) => {
-    return await refresh()
-  }
-)
+watch(() => props.id, refresh)
 const labels = computed(() =>
   pokemon.value.stats.map(({ stat: { name } }) => name)
 )
@@ -39,7 +34,7 @@ const labels = computed(() =>
 const dataset = computed(() => [
   {
     color: 'tomato',
-    values: pokemon.value.stats.map(({ base_stat }) => base_stat / 200),
+    values: pokemon.value.stats.map(({ base_stat }) => base_stat / 250),
   },
 ])
 </script>

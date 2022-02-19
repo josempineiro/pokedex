@@ -16,7 +16,7 @@
             `RadarChartAxisLabel_y_${indexYPosition(index)}`,
           ]"
         >
-          {{ label }}
+          {{ label.split('-').join(' ') }}
         </div>
       </div>
     </div>
@@ -102,7 +102,6 @@ const indexYPosition = (index) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  white-space: pre;
 }
 .RadarChartAxisLabel {
   font-size: 10px;

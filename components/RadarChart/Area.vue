@@ -1,5 +1,7 @@
 <template>
-  <div class="RadarCharArea" :style="styles"></div>
+  <svg v-if="true" class="RadarCharArea" viewBox="0 0 100 100">
+    <path :style="svgStyles" />
+  </svg>
 </template>
 
 <script setup>
@@ -12,7 +14,7 @@ const props = defineProps({
 
 const classes = defineClasses('RadarCharAreas')
 
-const path = computed(() =>
+const svgPath = computed(() =>
   props.data.values
     .map((value, index, values) => {
       const valueAngle = ((2 * Math.PI) / values.length) * index
@@ -21,14 +23,16 @@ const path = computed(() =>
         50 + 50 * Math.sin(valueAngle) * value,
       ]
     })
-    .map(([x, y]) => `${x}% ${y}%`)
-    .join(',')
+    .map(([x, y]) => `${x} ${y}`)
+    .join(' L ')
 )
 
-const styles = computed(() => ({
-  backgroundColor: props.data.color,
-  clipPath: `polygon(${path.value})`,
+const svgStyles = computed(() => ({
+  stroke: props.data.color,
+  fill: props.data.color,
+  d: `path("m ${svgPath.value} z")`,
 }))
+console.log(svgStyles)
 </script>
 
 <style lang="scss">
@@ -38,7 +42,10 @@ const styles = computed(() => ({
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgb(16, 143, 255);
-  transition: clip-path 1s ease;
+  path {
+    stroke-width: 1;
+    transition: 0.4s;
+    fill-opacity: 0.3;
+  }
 }
 </style>
