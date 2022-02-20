@@ -53,7 +53,7 @@ const classes = defineClasses('PokedexCover')
   font-weight: bold;
   color: white;
   text-align: center;
-  background: #d1092b;
+  background: var(--color-primary-rgb);
 }
 
 .PokedexCoverFace_front {

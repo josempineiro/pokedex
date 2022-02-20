@@ -51,8 +51,8 @@ const close = ref(false)
   pointer-events: none;
 }
 .Pokedex2D {
-  --pokedex-shadow-color: #610514;
-  --pokedex-main-color: #d1092b;
+  --pokedex-shadow-color: var(--color-darken-primary-rgb);
+  --pokedex-main-color: var(--color-primary-rgb);
   --pokedex-reflect-color: #ffa4b4;
   --pokedex-shadow-size: 16px;
   position: relative;
