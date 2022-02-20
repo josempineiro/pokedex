@@ -17,7 +17,7 @@ const route = useRoute()
 const router = useRouter()
 
 definePageMeta({
-  layout: 'pokedex',
+  layout: 'default',
   pageTransition: {
     appear: true,
     name: 'Appear',
