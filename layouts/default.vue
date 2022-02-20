@@ -17,4 +17,16 @@ const classes = defineClasses('Layout')
   justify-content: center;
   align-items: center;
 }
+
+.Layout.Appear-enter-active,
+.Layout.Appear-leave-active {
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
+}
+
+.Layout.Appear-enter-from,
+.Layout.Appear-leave-to {
+  opacity: 0;
+}
 </style>

@@ -25,6 +25,12 @@ definePageMeta({
     duration: 500,
     mode: 'out-in',
   },
+  layoutTransition: {
+    appear: true,
+    name: 'Appear',
+    duration: 500,
+    mode: 'out-in',
+  },
 })
 
 const route = useRoute()
