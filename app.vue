@@ -18,9 +18,11 @@
       />
     </Head>
     <Body>
+      <Social />
       <NuxtLayout>
         <NuxtPage />
       </NuxtLayout>
+      <Banner />
     </Body>
   </Html>
 </template>

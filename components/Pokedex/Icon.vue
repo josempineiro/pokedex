@@ -20,11 +20,11 @@ const classes = defineClasses('PokedexIcon')
   width: 64px;
   height: 64px;
   .Pokedex {
-    fill: var(--color-primary-rgb);
+    fill: var(--color-primary);
   }
   .CoverLine {
     fill: transparent;
-    stroke: var(--color-darken-primary-rgb);
+    stroke: var(--color-darken-primary);
     stroke-width: 5px;
   }
   .Led {
@@ -34,7 +34,7 @@ const classes = defineClasses('PokedexIcon')
   }
   .Open {
     fill: rgb(238, 190, 88);
-    stroke: var(--color-darken-primary-rgb);
+    stroke: var(--color-darken-primary);
     stroke-width: 2;
   }
 }
