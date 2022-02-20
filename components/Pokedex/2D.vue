@@ -10,9 +10,9 @@
             <Led class="PowerLed" :on="!close" size="small" color="green" />
           </CssFlexBox>
         </div>
-        <CssFlexBox class="MainPanelWrapper">
+        <div class="MainPanelWrapper">
           <slot> </slot>
-        </CssFlexBox>
+        </div>
       </div>
     </div>
     <div class="Hinge"></div>
@@ -196,7 +196,7 @@ const close = ref(false)
   position: relative;
   background: var(--pokedex-shadow-color);
   height: 90%;
-  max-height: 100%;
+  overflow: hidden;
   clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0% 100%);
   padding: 25% 10% 10%;
   &::before,

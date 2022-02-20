@@ -1,16 +1,15 @@
 <template>
-  <div :class="[...classes, loading ? 'Pokemon_loading' : '']" v-if="loading">
-    Loading...
-  </div>
-  <div :class="classes" v-if="data">
+  <div :class="classes">
     <img
       class="PokemonAvatar"
-      :src="`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${data.id}.svg`"
+      @load="onLoad"
+      @error="onError"
+      :src="avatarSrc"
     />
     <div class="PokemonInfo">
-      <span> #{{ data.id }}</span>
-      <span class="PokemonName"> {{ data.name }}</span>
-      <PokemonTypes :id="id" />
+      <span> #{{ pokemon.id }}</span>
+      <span class="PokemonName"> {{ pokemon.name }}</span>
+      <PokemonTypes :pokemon="pokemon" />
     </div>
   </div>
 </template>
@@ -21,16 +20,28 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  id: {
-    type: String,
-    required: true,
-  },
 })
-const classes = defineClasses('Pokemon')
-
-const { data, loading } = await useAsyncData('pokemon', () =>
-  $fetch(`https://pokeapi.co/api/v2/pokemon/${props.id}`)
+const avatarSrc = computed(
+  () =>
+    `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${props.pokemon.id}.svg`
 )
+watch(avatarSrc, (a) => {
+  loading.value = true
+})
+
+const loading = ref(true)
+const propClasses = defineClasses('Pokemon')
+
+const onLoad = () => {
+  loading.value = false
+}
+const onError = () => {
+  loading.value = false
+}
+const classes = computed(() => [
+  ...propClasses.value,
+  loading.value ? 'Pokemon_loading' : '',
+])
 </script>
 
 <style lang="scss">

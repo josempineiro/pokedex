@@ -8,33 +8,30 @@
 
 <script setup>
 const props = defineProps({
-  id: {
-    type: String,
+  pokemon: {
+    type: Object,
     required: true,
+  },
+  variant: {
+    type: String,
+    class: true,
+    default: 'default',
+    validator(value) {
+      return ['default', 'mini'].includes(value)
+    },
   },
 })
 
 const classes = defineClasses('PokemonStats')
 
-const {
-  data: pokemon,
-  loading,
-  refresh,
-} = await useAsyncData('pokemon', () =>
-  $fetch(`https://pokeapi.co/api/v2/pokemon/${props.id}`, {
-    pick: ['id', 'stats'],
-  })
-)
-
-watch(() => props.id, refresh)
 const labels = computed(() =>
-  pokemon.value.stats.map(({ stat: { name } }) => name)
+  props.pokemon.stats.map(({ stat: { name } }) => name)
 )
 
 const dataset = computed(() => [
   {
     color: 'tomato',
-    values: pokemon.value.stats.map(({ base_stat }) => base_stat / 250),
+    values: props.pokemon.stats.map(({ base_stat }) => base_stat / 250),
   },
 ])
 </script>
@@ -49,5 +46,10 @@ const dataset = computed(() => [
 }
 .RadarWrapper {
   width: 60%;
+}
+
+.PokemonStats_mini .RadarChartAxisLabel {
+  font-size: 12px;
+  padding: 0;
 }
 </style>

@@ -2,3 +2,23 @@
 @import './_colors.scss';
 @import './_variables.scss';
 @import './_typography.scss';
+
+@media only screen and (max-width: 800px) {
+  body {
+    .Layout {
+      padding: 32px;
+      overflow: scroll;
+      justify-content: flex-start;
+      .Pokedex2D {
+        width: 180vw;
+        height: 150vw;
+        min-width: max(180vw, 90vh - 64px);
+        max-width: max(180vw, calc(100vh - 64px) * 2);
+        max-height: min(150vw, 100vh - 64px);
+      }
+      .MainControls {
+        gap: 0.5rem;
+      }
+    }
+  }
+}

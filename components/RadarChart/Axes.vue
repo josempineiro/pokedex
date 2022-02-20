@@ -104,7 +104,7 @@ const indexYPosition = (index) => {
   justify-content: center;
 }
 .RadarChartAxisLabel {
-  font-size: 10px;
+  font-size: 16px;
   padding: 0 4px;
   position: absolute;
   top: var(--label-top);
