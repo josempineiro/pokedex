@@ -1,6 +1,12 @@
 {
+  "author": "José Manuel Piñeiro García",
+  "developer": {
+    "name": "José Manuel Piñeiro García",
+    "url": "https://www.linkedin.com/in/josempineiro/"
+  },
   "short_name": "Awesome Pokedex",
-  "name": "Awesome Pokedex built with Nuxt3 and free PokeAPI",
+  "name": "Awesome Pokedex Application",
+  "description": "Awesome Pokedex Application built with Nuxt3 and free PokeAPI",
   "display": "minimal-ui",
   "icons": [
     {
