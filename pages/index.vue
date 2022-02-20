@@ -1,8 +1,9 @@
 <template>
-  <div class="HomePage" id="HomePage">
+  <div class="HomePage" @click="playBeep">
     <button class="StartButton" @click="playBeep">
-      <PokedexIcon @click="playBeep" :class="{ started }" />
+      <PokedexIcon :class="{ started }" />
     </button>
+    <span class="StartMessage">Click to start...</span>
     <audio ref="beep" @ended="ended">
       <source src="~/assets/audio/beep.mp3" type="audio/mp3" />
     </audio>
@@ -19,7 +20,7 @@ definePageMeta({
   pageTransition: {
     appear: true,
     name: 'HomePage',
-    duration: 500,
+    duration: 5000,
     mode: 'out-in',
   },
 })
@@ -88,6 +89,8 @@ function ended() {
 }
 .HomePage {
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -136,5 +139,26 @@ function ended() {
 .HomePage-enter-from,
 .HomePage-leave-to {
   opacity: 0;
+}
+
+@keyframes write {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 17ch;
+  }
+}
+.StartMessage {
+  width: 0ch;
+  white-space: pre;
+  overflow: hidden;
+  animation-delay: 2s;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: steps(17);
+  animation-name: write;
+  font-family: 'Mozart';
 }
 </style>
