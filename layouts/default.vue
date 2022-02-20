@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-const classes = defineClasses('Wrapper')
+const classes = defineClasses('Layout')
 </script>
 
 <style lang="scss">
