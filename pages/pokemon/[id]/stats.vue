@@ -3,10 +3,11 @@
     @click-left="prev"
     @click-right="next"
     @click-main="goProfile"
+    class="PokemonStatsPage"
   >
-    <PokemonStats :id="route.params.id" />
+    <PokemonStats :pokemon="pokemon" />
     <template #secondary-display>
-      <div>ASDF</div>
+      <Pokemon :pokemon="pokemon" />
     </template>
   </PokedexMainPanel>
 </template>
@@ -14,6 +15,29 @@
 <script setup>
 const route = useRoute()
 const router = useRouter()
+
+definePageMeta({
+  layout: 'pokedex',
+  pageTransition: {
+    appear: true,
+    name: 'Appear',
+    duration: 200,
+    mode: 'out-in',
+  },
+  key: false,
+})
+
+const {
+  data: pokemon,
+  loading,
+  refresh,
+} = await useAsyncData('pokemon', () =>
+  $fetch(`https://pokeapi.co/api/v2/pokemon/${route.params.id}`, {
+    pick: ['id', 'stats'],
+  })
+)
+
+watch(() => route.params.id, refresh)
 
 const goProfile = () => {
   router.push({
@@ -35,11 +59,17 @@ const prev = () => {
   router.push(
     route.fullPath.replace(
       route.params.id,
-      `${Number(Math.max(0, route.params.id) - 1)}`
+      `${Math.max(1, Number(route.params.id) - 1)}`
     )
   )
 }
 </script>
 
 <style>
+.PokemonStatsPage .Pokemon {
+  padding: 4px;
+}
+.PokemonStatsPage .PokemonInfo {
+  display: none;
+}
 </style>

@@ -57,8 +57,6 @@ const classes = defineClasses('Button')
   border-radius: 100px;
 }
 .Button_square {
-  width: 40px;
-  height: 40px;
 }
 .Button_rectangle {
   width: 50px;

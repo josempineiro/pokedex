@@ -1,8 +1,6 @@
 <template>
   <div :class="classes">
-    <Pokedex2D>
-      <slot></slot>
-    </Pokedex2D>
+    <Pokedex2D><slot></slot></Pokedex2D>
   </div>
 </template>
 
@@ -11,7 +9,7 @@ const classes = defineClasses('Wrapper')
 </script>
 
 <style lang="scss">
-.Wrapper {
+.Layout {
   padding: 64px;
   height: 100%;
   display: flex;

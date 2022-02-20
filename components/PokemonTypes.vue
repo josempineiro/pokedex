@@ -1,11 +1,15 @@
 <template>
-  <div :class="classes" v-if="pokemonInfo">
-    <template v-for="pokemonType in pokemonInfo.types">
+  <div :class="classes">
+    <div
+      v-for="pokemonType in pokemon.types"
+      :key="pokemonType.type.name"
+      :title="pokemonType.type.name"
+    >
       <template v-if="pokemonType.type.name === 'normal'">🌱</template>
       <template v-if="pokemonType.type.name === 'fighting'">🤼‍♂️</template>
       <template v-if="pokemonType.type.name === 'flying'">✈️</template>
       <template v-if="pokemonType.type.name === 'poison'">🧪</template>
-      <template v-if="pokemonType.type.name === 'ground'">🕳️</template>
+      <template v-if="pokemonType.type.name === 'ground'">🗻</template>
       <template v-if="pokemonType.type.name === 'rock'">🪨</template>
       <template v-if="pokemonType.type.name === 'bug'">🐛</template>
       <template v-if="pokemonType.type.name === 'ghost'">👻</template>
@@ -21,28 +25,23 @@
       <template v-if="pokemonType.type.name === 'fairy'">🧚</template>
       <template v-if="pokemonType.type.name === 'unknown'">🌱</template>
       <template v-if="pokemonType.type.name === 'shadow'">👥</template>
-    </template>
+    </div>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
-  id: {
-    type: String,
+  pokemon: {
+    type: Object,
     required: true,
   },
 })
-const classes = defineClasses('PokemonType')
-import { useQuery, useResult } from '@vue/apollo-composable'
-import { POKEMON_QUERY } from '@/api/pokemon/queries'
-
-const { loading, result } = useQuery(POKEMON_QUERY, {
-  name: props.id,
-})
-const pokemonInfo = useResult(result)
+const classes = defineClasses('PokemonTypes')
 </script>
 
 <style lang="scss">
-.PokemonType {
+.PokemonTypes {
+  display: flex;
+  gap: 1rem;
 }
 </style>

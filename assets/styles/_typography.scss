@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Nunito:wght@200;400;600&display=swap');
 
+@font-face {
+  font-family: 'Pokemon Pixel Font Regular';
+  src: url('~/assets/font/pokemon_pixel/pokemon_pixel_font.eot?') format('eot'),
+    url('~/assets/font/pokemon_pixel/pokemon_pixel_font.woff') format('woff'),
+    url('~/assets/font/pokemon_pixel/pokemon_pixel_font.ttf') format('truetype'),
+    url('~/assets/font/pokemon_pixel/pokemon_pixel_font.svg#Pokemon-Pixel-Font')
+      format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Pokemon Pixel Font Regular';
 }
