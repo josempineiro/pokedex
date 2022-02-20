@@ -1,6 +1,9 @@
 <template>
   <div class="HomePage">
     <NuxtLink to="/pokemon/1"> <PokedexIcon /></NuxtLink>
+    <audio ref="beep">
+      <source src="~/assets/audio/beep.mp3" type="audio/mp3" />
+    </audio>
   </div>
 </template>
 
@@ -20,8 +23,12 @@ definePageMeta({
 })
 
 const router = useRouter()
+const beep = ref(null)
 onMounted(() => {
-  setTimeout(() => {
+  setTimeout(function () {
+    beep.value.play()
+  }, 1000)
+  setTimeout(function () {
     router.push({
       name: 'pokemon-id',
       params: { id: '1' },
