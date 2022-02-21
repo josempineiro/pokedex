@@ -2,16 +2,9 @@
   <div :class="[...classes, { open }]">
     <div class="Case">
       <div class="CasePanel">
-        <div class="TopPanel">
-          <Led class="BigLed" :on="open" size="big" color="blue" />
-          <CssFlexBox class="Leds" gap="1">
-            <Led class="ErrorLed" :on="open" size="small" color="red" />
-            <Led class="WarningLed" :on="open" size="small" color="yellow" />
-            <Led class="PowerLed" :on="open" size="small" color="green" />
-          </CssFlexBox>
-        </div>
+        <PokedexTopPanel :on="open" />
         <div class="MainPanelWrapper">
-          <slot> </slot>
+          <slot></slot>
         </div>
       </div>
     </div>
