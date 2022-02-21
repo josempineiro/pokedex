@@ -21,7 +21,7 @@ definePageMeta({
   },
   pageTransition: {
     appear: true,
-    name: 'Appear',
+    name: 'PokemonPage',
     duration: 500,
     mode: 'out-in',
   },
@@ -76,15 +76,21 @@ const prev = () => {
 </script>
 
 <style>
-.Appear-enter-active .Display > *,
-.Appear-leave-active .Display > * {
+.PokemonPage-enter-active .Display > *,
+.PokemonPage-leave-active .Display > * {
   transition-property: all;
   transition-timing-function: ease-in-out;
   transition-duration: 500ms;
 }
 
-.Appear-enter-from .Display > *,
-.Appear-leave-to .Display > * {
+.PokemonPage-enter-from .Display > *,
+.PokemonPage-leave-to .Display > * {
   opacity: 0;
+  pointer-events: none;
+}
+
+.PokemonPage-enter-from,
+.PokemonPage-leave-to {
+  pointer-events: none;
 }
 </style>

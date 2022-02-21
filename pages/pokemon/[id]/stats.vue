@@ -20,8 +20,8 @@ definePageMeta({
   layout: 'default',
   pageTransition: {
     appear: true,
-    name: 'Appear',
-    duration: 200,
+    name: 'PokemonStatsPage',
+    duration: 500,
     mode: 'out-in',
   },
   key: false,
@@ -71,5 +71,23 @@ const prev = () => {
 }
 .PokemonStatsPage .PokemonInfo {
   display: none;
+}
+
+.PokemonStatsPage-enter-active .MainControlsDisplay > *,
+.PokemonStatsPage-leave-active .MainControlsDisplay > * {
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
+}
+
+.PokemonStatsPage-enter-from .MainControlsDisplay > *,
+.PokemonStatsPage-leave-to .MainControlsDisplay > * {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.PokemonStatsPage-enter-from,
+.PokemonStatsPage-leave-to {
+  pointer-events: none;
 }
 </style>
