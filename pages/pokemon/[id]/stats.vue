@@ -57,26 +57,22 @@ watch(() => route.params.id, refresh)
 const goProfile = () => {
   router.push({
     name: 'pokemon-id',
-    params: { id: route.params.id },
+    params: { id: pokemon.value.id },
   })
 }
 
 const next = () => {
-  router.push(
-    route.fullPath.replace(
-      route.params.id,
-      `${Math.min(150, Number(route.params.id) + 1)}`
-    )
-  )
+  router.push({
+    name: 'pokemon-id-stats',
+    params: { id: `${Math.min(150, Number(pokemon.value.id) + 1)}` },
+  })
 }
 
 const prev = () => {
-  router.push(
-    route.fullPath.replace(
-      route.params.id,
-      `${Math.max(1, Number(route.params.id) - 1)}`
-    )
-  )
+  router.push({
+    name: 'pokemon-id-stats',
+    params: { id: `${Math.max(1, Number(pokemon.value.id) - 1)}` },
+  })
 }
 </script>
 
