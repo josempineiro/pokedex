@@ -1,13 +1,13 @@
 <template>
-  <div :class="classes">
+  <div :class="[...classes, { open }]">
     <div class="Case">
       <div class="CasePanel">
         <div class="TopPanel">
-          <Led class="BigLed" :on="!close" size="big" color="blue" />
+          <Led class="BigLed" :on="open" size="big" color="blue" />
           <CssFlexBox class="Leds" gap="1">
-            <Led class="ErrorLed" :on="!close" size="small" color="red" />
-            <Led class="WarningLed" :on="!close" size="small" color="yellow" />
-            <Led class="PowerLed" :on="!close" size="small" color="green" />
+            <Led class="ErrorLed" :on="open" size="small" color="red" />
+            <Led class="WarningLed" :on="open" size="small" color="yellow" />
+            <Led class="PowerLed" :on="open" size="small" color="green" />
           </CssFlexBox>
         </div>
         <div class="MainPanelWrapper">
@@ -16,25 +16,23 @@
       </div>
     </div>
     <div class="Hinge"></div>
-    <div class="Cover">
-      <div class="CoverPanel"></div>
-    </div>
+    <PokedexCover :open="open" @close="open = false" @open="open = true">
+    </PokedexCover>
+    <audio ref="beep" @ended="ended">
+      <source src="~/assets/audio/beep.mp3" type="audio/mp3" />
+    </audio>
   </div>
 </template>
 
 <script setup>
-const props = defineProps({
-  prop: {
-    type: String,
-    default: 'value',
-    validator(value) {
-      return true
-    },
-    class: true,
-  },
-})
 const classes = defineClasses('Pokedex2D')
-const close = ref(false)
+const open = ref(false)
+const beep = ref(null)
+watch(open, (value) => {
+  if (value) {
+    beep.value.play()
+  }
+})
 </script>
 
 <style lang="scss">
@@ -84,56 +82,6 @@ const close = ref(false)
       display: flex;
       padding: 7% 12%;
       gap: 32px;
-    }
-  }
-  .Cover {
-    position: relative;
-    flex: 1;
-    top: 10%;
-    height: 90%;
-    &::before {
-      @include shadow(0 0 16px 0);
-      clip-path: polygon(0% 0%, 40% 0%, 60% 10%, 100% 10%, 100% 100%, 0% 100%);
-    }
-    &::after {
-      position: absolute;
-      content: '';
-      top: 0;
-      left: 0;
-      width: calc(100% - 10%);
-      height: calc(100% - 10%);
-      clip-path: polygon(
-        0% 0%,
-        40% 0%,
-        60% 10%,
-        100% 10%,
-        100% 100%,
-        0% 100%,
-        0% 4px,
-        4px 4px,
-        4px calc(100% - 4px),
-        calc(100% - 4px) calc(100% - 4px),
-        calc(100% - 4px) calc(10% + 4px),
-        calc(60% - 2px) calc(10% + 4px),
-        calc(40% - 2px) 4px,
-        0% 4px
-      );
-
-      pointer-events: none;
-      top: 3%;
-      width: 92%;
-      left: 4%;
-      height: calc(94%);
-      border-radius: 0 0 8px 0;
-      background: var(--pokedex-shadow-color);
-    }
-    .CoverPanel {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      background: var(--pokedex-main-color);
-      border-radius: 0 0 16px 0;
-      clip-path: polygon(0% 0%, 40% 0%, 60% 10%, 100% 10%, 100% 100%, 0% 100%);
     }
   }
   .Hinge {
@@ -239,6 +187,16 @@ const close = ref(false)
       calc(40% - 2px) 4px,
       0% 4px
     );
+  }
+}
+
+@media only screen and (min-width: 801px) {
+  .Pokedex2D {
+    transition: transform 200ms ease;
+    transform: translateX(25%);
+    &.open {
+      transform: translateX(0);
+    }
   }
 }
 </style>

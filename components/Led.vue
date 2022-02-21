@@ -107,11 +107,15 @@ const classes = defineClasses('Led')
     display: flex;
     width: 100%;
     height: 100%;
+    background: var(--led-color);
+    box-shadow: var(--led-shadow);
+    position: relative;
+    overflow: hidden;
     transition-property: background, box-shadow;
     transition-duration: 0.2s;
     transition-timing-function: ease;
     border-radius: 100%;
-
+    filter: brightness(1.2);
     &::before,
     &::after {
       content: '';
@@ -120,13 +124,6 @@ const classes = defineClasses('Led')
       transition-duration: 0.2s;
       transition-timing-function: ease;
     }
-  }
-
-  &.Led_on .Capsule {
-    background: var(--led-color);
-    box-shadow: var(--led-shadow);
-    position: relative;
-    overflow: hidden;
     &::before {
       width: 105%;
       height: 105%;
@@ -154,6 +151,9 @@ const classes = defineClasses('Led')
       border-radius: 100%;
       transform: translate3d(-50%, -50%, 0);
     }
+  }
+  &:not(.Led_on) .Capsule {
+    filter: brightness(0.8);
   }
 }
 </style>

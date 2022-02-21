@@ -1,12 +1,9 @@
 <template>
-  <div class="HomePage" @click="playBeep">
-    <button class="StartButton" @click="playBeep">
-      <PokedexIcon :class="{ started }" />
+  <div class="HomePage" @click="navigateToPokedex">
+    <button class="StartButton">
+      <PokedexIcon />
     </button>
-    <span class="StartMessage">Click to start...</span>
-    <audio ref="beep" @ended="ended">
-      <source src="~/assets/audio/beep.mp3" type="audio/mp3" />
-    </audio>
+    <span class="LoadingMessage">Loading...</span>
   </div>
 </template>
 
@@ -26,12 +23,6 @@ definePageMeta({
 })
 
 const router = useRouter()
-const beep = ref(null)
-const started = ref(false)
-
-function playBeep() {
-  return beep.value.play()
-}
 
 function navigateToPokedex() {
   router.push({
@@ -40,14 +31,9 @@ function navigateToPokedex() {
   })
 }
 
-function start() {
-  started.value = true
-  playBeep()
-}
-
-function ended() {
-  setTimeout(navigateToPokedex, 500)
-}
+onMounted(() => {
+  setTimeout(navigateToPokedex, 3000)
+})
 </script>
 
 <style lang="scss">
@@ -110,22 +96,7 @@ function ended() {
     animation-delay: 1s;
     animation-fill-mode: forwards;
     animation-timing-function: ease;
-  }
-  .StartButton:not(:hover) {
     animation-name: spin;
-  }
-
-  .StartButton:hover:not(:focus) {
-    animation-name: none;
-    transform: scale(1.1);
-    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.3));
-  }
-
-  .StartButton:focus {
-    animation-delay: 0s;
-    animation-name: active;
-    animation-iteration-count: 1;
-    animation-duration: 1s;
   }
 }
 
@@ -141,24 +112,24 @@ function ended() {
   opacity: 0;
 }
 
-@keyframes write {
+@keyframes loading {
   from {
     width: 0ch;
   }
   to {
-    width: 17ch;
+    width: 10ch;
   }
 }
-.StartMessage {
+.LoadingMessage {
   width: 0ch;
   white-space: pre;
   overflow: hidden;
-  animation-delay: 2s;
+  animation-delay: 1s;
   animation-duration: 2s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  animation-timing-function: steps(17);
-  animation-name: write;
+  animation-timing-function: steps(10);
+  animation-name: loading;
   font-family: 'Mozart';
 }
 </style>

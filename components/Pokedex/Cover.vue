@@ -1,15 +1,11 @@
 <template>
-  <div
-    :class="[classes, open ? 'PokedexCover_open' : 'PokedexCover_close']"
-    @click="open ? emit('close') : emit('open')"
-  >
-    <div class="PokedexCoverFace PokedexCoverFace_front"></div>
-    <div class="PokedexCoverFace PokedexCoverFace_back">CONTENT</div>
-    <div class="PokedexCoverFace PokedexCoverFace_right"></div>
-    <div class="PokedexCoverFace PokedexCoverFace_diagonal"></div>
-    <div class="PokedexCoverFace PokedexCoverFace_left"></div>
-    <div class="PokedexCoverFace PokedexCoverFace_top"></div>
-    <div class="PokedexCoverFace PokedexCoverFace_bottom"></div>
+  <div :class="classes" @click="$emit('close')">
+    <div class="PokedexCoverPanel">
+      <slot></slot>
+    </div>
+    <div class="PokedexCoverFront">
+      <button class="OpenButton" @click.stop="$emit('open')"></button>
+    </div>
   </div>
 </template>
 
@@ -18,126 +14,117 @@ const props = defineProps({
   open: {
     type: Boolean,
     default: false,
+    class: true,
   },
 })
-const emit = defineEmits(['open', 'close'])
+const emit = defineEmits(['close', 'open'])
 const classes = defineClasses('PokedexCover')
 </script>
 
 <style lang="scss">
+@mixin shadow($border-radius) {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(16px);
+  background: var(--pokedex-shadow-color);
+  border-radius: $border-radius;
+  pointer-events: none;
+}
+
 .PokedexCover {
-  width: 90%;
-  height: 100%;
-  right: 10%;
-  position: absolute;
-  transform-style: preserve-3d;
-  transform-origin: right;
-  transition-property: transform, right;
-  transition-duration: 2s;
-  transition-timing-function: cubic-bezier(0.84, -0.01, 0.15, 1);
-  pointer-events: all;
-}
-.PokedexCover_open {
-  transform: rotateY(180deg);
-  right: 0%;
-}
-.PokedexCover_close {
-  transform: rotateY(0deg);
-}
-
-.PokedexCoverFace {
-  position: absolute;
-  border: 1px solid black;
-  line-height: 200px;
-  font-size: 40px;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  background: var(--color-primary);
-}
-
-.PokedexCoverFace_front {
-  width: 100%;
-  height: 100%;
-  transform: rotateY(0deg) translateZ(5px);
-  clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0 100%);
-  &::before,
-  &::after {
-    content: '';
-    z-index: 1;
-    height: 1px;
-    position: absolute;
-    background-color: black;
-  }
-  &::before {
-    width: 26%;
-    top: -1px;
-    right: 40%;
-    transform: rotate(-40deg);
-    transform-origin: right;
-  }
-  &::after {
-    width: 40%;
-    top: calc(10% - 1px);
-    left: 0;
-  }
-}
-.PokedexCoverFace_back {
-  width: 100%;
-  height: 100%;
-  transform: rotateY(180deg) translateZ(5px);
-  clip-path: polygon(0% 0%, 40% 0%, 60% 10%, 100% 10%, 100% 100%, 0 100%);
-  &::before,
-  &::after {
-    content: '';
-    z-index: 1;
-    height: 1px;
-    position: absolute;
-    background-color: black;
-  }
-  &::before {
-    width: 26%;
-    top: -1px;
-    left: 40%;
-    transform: rotate(40deg);
-    transform-origin: left;
-  }
-  &::after {
-    width: 40%;
-    top: calc(10% - 1px);
-    right: 0;
-  }
-}
-.PokedexCoverFace_right {
-  width: 10px;
-  height: 100%;
-  transform: rotateY(90deg) translateX(-5px);
-  left: 100%;
-  transform-origin: left;
-}
-.PokedexCoverFace_diagonal {
-  height: 10px;
-  width: 40%;
-  right: 40%;
-  top: 0%;
-  transform: rotateX(90deg) translateY(-5px) rotateY(-40deg);
-  transform-origin: top right;
-}
-.PokedexCoverFace_left {
-  width: 10px;
-  height: 90%;
-  transform: rotateY(-90deg) translateZ(5px);
+  position: relative;
+  flex: 1;
   top: 10%;
-}
-.PokedexCoverFace_top {
-  width: 40%;
-  left: 60%;
-  height: 10px;
-  transform: rotateX(90deg) translateZ(5px);
-}
-.PokedexCoverFace_bottom {
-  width: 100%;
-  height: 10px;
-  transform: rotateX(-90deg) translateZ(395px);
+  height: 90%;
+  right: 0%;
+  transition: right 200ms ease, transform 200ms ease;
+  &::before {
+    @include shadow(0 0 16px 0);
+    clip-path: polygon(0% 0%, 40% 0%, 60% 10%, 100% 10%, 100% 100%, 0% 100%);
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: calc(100% - 10%);
+    height: calc(100% - 10%);
+    clip-path: polygon(
+      0% 0%,
+      40% 0%,
+      60% 10%,
+      100% 10%,
+      100% 100%,
+      0% 100%,
+      0% 4px,
+      4px 4px,
+      4px calc(100% - 4px),
+      calc(100% - 4px) calc(100% - 4px),
+      calc(100% - 4px) calc(10% + 4px),
+      calc(60% - 2px) calc(10% + 4px),
+      calc(40% - 2px) 4px,
+      0% 4px
+    );
+
+    pointer-events: none;
+    top: 3%;
+    width: 92%;
+    left: 4%;
+    height: calc(94%);
+    border-radius: 0 0 8px 0;
+    background: var(--pokedex-shadow-color);
+  }
+  .PokedexCoverPanel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: var(--pokedex-main-color);
+    border-radius: 0 0 16px 0;
+    clip-path: polygon(0% 0%, 40% 0%, 60% 10%, 100% 10%, 100% 100%, 0% 100%);
+    backface-visibility: hidden;
+  }
+
+  & {
+    transform: translateX(-100%) rotateY(180deg);
+    right: 5%;
+    .PokedexCoverFront {
+      transform: rotateY(0deg);
+    }
+  }
+  &_open {
+    transform: translateX(0) rotateY(0deg);
+    right: 0;
+    .PokedexCoverFront {
+      transform: rotateY(180deg);
+    }
+  }
+  .PokedexCoverFront {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-primary);
+    backface-visibility: hidden;
+    transition: transform 0ms ease;
+    clip-path: polygon(0% 0%, 40% 0%, 60% 10%, 100% 10%, 100% 100%, 0% 100%);
+    transition-delay: 50ms;
+    z-index: 1;
+  }
+  .OpenButton {
+    background: transparent;
+    border-width: 32px;
+    border-color: transparent;
+    border-right-color: var(--color-tertiary);
+    border-style: solid;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    cursor: pointer;
+  }
 }
 </style>
