@@ -5,6 +5,21 @@
     @click-main="goProfile"
     class="PokemonStatsPage"
   >
+    <Head>
+      <Title>{{ `Awesome Pokedex App: ${pokemon.name} stats` }}</Title>
+      <Meta
+        property="og:title"
+        :content="`Awesome Pokedex App: ${pokemon.name} stats`"
+      />
+      <Meta
+        property="og:image"
+        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`"
+      />
+      <Meta
+        property="twitter:image"
+        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`"
+      />
+    </Head>
     <PokemonStats :pokemon="pokemon" />
     <template #secondary-display>
       <Pokemon :pokemon="pokemon" />

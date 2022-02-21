@@ -5,6 +5,21 @@
     @click-right="next"
     @click-main="goStats"
   >
+    <Head>
+      <Title>{{ `Awesome Pokedex App: ${pokemon.name}` }}</Title>
+      <Meta
+        property="og:title"
+        :content="`Awesome Pokedex App: ${pokemon.name}`"
+      />
+      <Meta
+        property="og:image"
+        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`"
+      />
+      <Meta
+        property="twitter:image"
+        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`"
+      />
+    </Head>
     <Pokemon :pokemon="pokemon" />
     <template #secondary-display>
       <PokemonStats :pokemon="pokemon" variant="mini" />
