@@ -23,7 +23,7 @@ const props = defineProps({
 })
 const avatarSrc = computed(
   () =>
-    `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${props.pokemon.id}.svg`
+    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.pokemon.id}.svg`
 )
 watch(avatarSrc, (a) => {
   loading.value = true
