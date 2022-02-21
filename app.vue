@@ -31,6 +31,6 @@
 </script>
 <style lang="scss">
 html {
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 </style>
