@@ -1,7 +1,7 @@
 <template>
   <div class="MainPanel">
     <PokedexMainDisplay>
-      <slot></slot>
+      <slot />
     </PokedexMainDisplay>
     <PokedexMainControls
       @click-main="(event) => $emit('click-main', event)"
@@ -10,7 +10,7 @@
       @click-right="(event) => $emit('click-right', event)"
       @click-bottom="(event) => $emit('click-bottom', event)"
     >
-      <slot name="secondary-display"></slot>
+      <slot name="secondary-display" />
     </PokedexMainControls>
   </div>
 </template>

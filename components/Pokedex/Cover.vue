@@ -1,10 +1,16 @@
 <template>
-  <div :class="classes" @click="$emit('close')">
+  <div
+    :class="classes"
+    @click="$emit('close')"
+  >
     <div class="PokedexCoverPanel">
-      <slot></slot>
+      <slot />
     </div>
     <div class="PokedexCoverFront">
-      <button class="OpenButton" @click.stop="$emit('open')"></button>
+      <button
+        class="OpenButton"
+        @click.stop="$emit('open')"
+      />
     </div>
   </div>
 </template>

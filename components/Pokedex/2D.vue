@@ -4,15 +4,24 @@
       <div class="CasePanel">
         <PokedexTopPanel :on="open" />
         <div class="MainPanelWrapper">
-          <slot></slot>
+          <slot />
         </div>
       </div>
     </div>
-    <div class="Hinge"></div>
-    <PokedexCover :open="open" @close="open = false" @open="open = true">
-    </PokedexCover>
-    <audio ref="beep" @ended="ended">
-      <source src="~/assets/audio/beep.mp3" type="audio/mp3" />
+    <div class="Hinge" />
+    <PokedexCover
+      :open="open"
+      @close="open = false"
+      @open="open = true"
+    />
+    <audio
+      ref="beep"
+      @ended="ended"
+    >
+      <source
+        src="~/assets/audio/beep.mp3"
+        type="audio/mp3"
+      >
     </audio>
   </div>
 </template>

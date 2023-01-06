@@ -1,21 +1,21 @@
 <template>
   <div class="CrossButtonWrapper">
     <div :class="classes">
-      <div class="Empty"></div>
+      <div class="Empty" />
       <PokedexButton
         variant="square"
         @click="(event) => $emit('click-top', event)"
       >
         ▲
       </PokedexButton>
-      <div class="Empty"></div>
+      <div class="Empty" />
       <PokedexButton
         variant="square"
         @click="(event) => $emit('click-left', event)"
       >
         ◀
       </PokedexButton>
-      <PokedexButton variant="square"></PokedexButton>
+      <PokedexButton variant="square" />
       <PokedexButton
         variant="square"
         @click="(event) => $emit('click-right', event)"
@@ -23,14 +23,14 @@
         ▶
       </PokedexButton>
 
-      <div class="Empty"></div>
+      <div class="Empty" />
       <PokedexButton
         variant="square"
         @click="(event) => $emit('click-bottom', event)"
       >
         ▼
       </PokedexButton>
-      <div class="Empty"></div>
+      <div class="Empty" />
     </div>
   </div>
 </template>

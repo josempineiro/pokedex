@@ -23,7 +23,7 @@
         variant="secondary"
         :on="!close"
       >
-        <slot></slot>
+        <slot />
       </PokedexDisplay>
     </div>
     <div class="MainCrossButton">

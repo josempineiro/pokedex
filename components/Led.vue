@@ -2,7 +2,7 @@
   <div :class="classes">
     <div class="Base">
       <div class="Capsule">
-        <div class="Reflect"></div>
+        <div class="Reflect" />
       </div>
     </div>
   </div>

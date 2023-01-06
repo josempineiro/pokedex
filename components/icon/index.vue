@@ -1,6 +1,9 @@
 <template>
   <i :class="classes">
-    <component :is="name" :active="active" />
+    <component
+      :is="name"
+      :active="active"
+    />
   </i>
 </template>
 

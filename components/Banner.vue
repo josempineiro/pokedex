@@ -1,5 +1,7 @@
 <template>
-  <div :class="classes">Leman.dev</div>
+  <div :class="classes">
+    Leman.dev
+  </div>
 </template>
 
 <script setup>

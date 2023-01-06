@@ -1,5 +1,8 @@
 <template>
-  <div class="HomePage" @click="navigateToPokedex">
+  <div
+    class="HomePage"
+    @click="navigateToPokedex"
+  >
     <button class="StartButton">
       <PokedexIcon />
     </button>

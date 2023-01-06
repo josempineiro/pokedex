@@ -1,9 +1,9 @@
 <template>
   <div :class="classes">
     <div
-      class="RadarChartAxis"
       v-for="(label, index) in labels"
       :key="index"
+      class="RadarChartAxis"
       :style="{
         '--axis-angle': `${((2 * Math.PI) / labels.length) * index}rad`,
       }"

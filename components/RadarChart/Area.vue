@@ -1,5 +1,9 @@
 <template>
-  <svg v-if="true" class="RadarCharArea" viewBox="0 0 100 100">
+  <svg
+    v-if="true"
+    class="RadarCharArea"
+    viewBox="0 0 100 100"
+  >
     <path :style="svgStyles" />
   </svg>
 </template>

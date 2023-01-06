@@ -1,6 +1,6 @@
 <template>
   <div :class="classes">
-    <Pokedex2D><slot></slot></Pokedex2D>
+    <Pokedex2D><slot /></Pokedex2D>
   </div>
 </template>
 

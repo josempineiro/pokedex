@@ -2,10 +2,10 @@
   <div :class="classes">
     <img
       class="PokemonAvatar"
+      :src="avatarSrc"
       @load="onLoad"
       @error="onError"
-      :src="avatarSrc"
-    />
+    >
     <div class="PokemonInfo">
       <span> #{{ pokemon.id }}</span>
       <span class="PokemonName"> {{ pokemon.name }}</span>

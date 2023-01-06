@@ -1,19 +1,34 @@
 <template>
   <div :class="classes">
     <div class="DisplayLeds">
-      <Led class="ErrorLed" :on="!close" size="small" color="red" />
-      <Led class="ErrorLed" :on="!close" size="small" color="red" />
+      <Led
+        class="ErrorLed"
+        :on="!close"
+        size="small"
+        color="red"
+      />
+      <Led
+        class="ErrorLed"
+        :on="!close"
+        size="small"
+        color="red"
+      />
     </div>
     <PokedexDisplay :on="!close">
-      <slot></slot>
+      <slot />
     </PokedexDisplay>
     <div class="DisplayControls">
-      <Led class="ErrorLed" :on="!close" size="medium" color="red" />
+      <Led
+        class="ErrorLed"
+        :on="!close"
+        size="medium"
+        color="red"
+      />
       <div class="Gratting">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span />
+        <span />
+        <span />
+        <span />
       </div>
     </div>
   </div>

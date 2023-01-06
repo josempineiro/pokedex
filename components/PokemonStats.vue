@@ -1,7 +1,10 @@
 <template>
   <div :class="classes">
     <div class="RadarWrapper">
-      <RadarChart :dataset="dataset" :labels="labels" />
+      <RadarChart
+        :dataset="dataset"
+        :labels="labels"
+      />
     </div>
   </div>
 </template>
