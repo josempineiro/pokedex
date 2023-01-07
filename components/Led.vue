@@ -12,12 +12,10 @@
 const props = defineProps({
   on: {
     type: Boolean,
-    class: true,
     default: false,
   },
   size: {
     type: String,
-    class: true,
     default: 'small',
     validator() {
       return ['big', 'medium', 'small']
@@ -25,14 +23,13 @@ const props = defineProps({
   },
   color: {
     type: String,
-    class: true,
     default: 'red',
     validator() {
       return ['red', 'green', 'yellow', 'blue']
     },
   },
 })
-const classes = defineClasses('Led')
+const classes = defineClasses('Led', props)
 </script>
 
 <style lang="scss">
@@ -46,16 +43,19 @@ const classes = defineClasses('Led')
   border-bottom-color: gainsboro;
   border-right-color: gainsboro;
   border-radius: 100%;
+
   &_small {
     width: 15px;
     height: 15px;
     --led-border-width: 1px;
   }
+
   &_medium {
     width: 30px;
     height: 30px;
     --led-border-width: 1px;
   }
+
   &_big {
     width: 75px;
     height: 75px;
@@ -66,14 +66,17 @@ const classes = defineClasses('Led')
     --led-color: rgba(56, 125, 67);
     --led-reflect-color: rgba(56, 125, 67, 0.5);
   }
+
   &_red {
     --led-color: rgb(153, 6, 29);
     --led-reflect-color: rgba(153, 6, 29, 0.5);
   }
+
   &_yellow {
     --led-color: rgb(238, 190, 88);
     --led-reflect-color: rgba(238, 190, 88, 0.5);
   }
+
   &_blue {
     --led-color: rgb(24, 106, 156);
     --led-reflect-color: rgba(24, 106, 156, 0.5);
@@ -95,14 +98,17 @@ const classes = defineClasses('Led')
     border-color: white;
     --led-border-width: 1px;
   }
+
   &_medium .Base {
     border-color: white;
     --led-border-width: 2px;
   }
+
   &_big .Base {
     border-color: white;
     --led-border-width: 4px;
   }
+
   .Capsule {
     display: flex;
     width: 100%;
@@ -116,6 +122,7 @@ const classes = defineClasses('Led')
     transition-timing-function: ease;
     border-radius: 100%;
     filter: brightness(1.2);
+
     &::before,
     &::after {
       content: '';
@@ -124,6 +131,7 @@ const classes = defineClasses('Led')
       transition-duration: 0.2s;
       transition-timing-function: ease;
     }
+
     &::before {
       width: 105%;
       height: 105%;
@@ -132,6 +140,7 @@ const classes = defineClasses('Led')
       background: rgba(255, 255, 255, 0.25);
       border-radius: 100%;
     }
+
     &::after {
       width: 40%;
       height: 20%;
@@ -141,6 +150,7 @@ const classes = defineClasses('Led')
       border-radius: 100%;
       transform: rotate(-45deg);
     }
+
     .Reflect {
       width: 15%;
       height: 15%;
@@ -152,6 +162,7 @@ const classes = defineClasses('Led')
       transform: translate3d(-50%, -50%, 0);
     }
   }
+
   &:not(.Led_on) .Capsule {
     filter: brightness(0.8);
   }

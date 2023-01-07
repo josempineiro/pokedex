@@ -3,13 +3,9 @@
     <PokedexMainDisplay>
       <slot />
     </PokedexMainDisplay>
-    <PokedexMainControls
-      @click-main="(event) => $emit('click-main', event)"
-      @click-top="(event) => $emit('click-top', event)"
-      @click-left="(event) => $emit('click-left', event)"
-      @click-right="(event) => $emit('click-right', event)"
-      @click-bottom="(event) => $emit('click-bottom', event)"
-    >
+    <PokedexMainControls @click-main="(event) => $emit('click-main', event)"
+      @click-top="(event) => $emit('click-top', event)" @click-left="(event) => $emit('click-left', event)"
+      @click-right="(event) => $emit('click-right', event)" @click-bottom="(event) => $emit('click-bottom', event)">
       <slot name="secondary-display" />
     </PokedexMainControls>
   </div>
@@ -23,7 +19,6 @@ const props = defineProps({
     validator(value) {
       return true
     },
-    class: true,
   },
 })
 const emit = defineEmits([
@@ -33,7 +28,7 @@ const emit = defineEmits([
   'click-left',
   'click-main',
 ])
-const classes = defineClasses('MainPanel')
+const classes = defineClasses('MainPanel', props)
 </script>
 
 <style lang="scss">

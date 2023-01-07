@@ -1,5 +1,5 @@
 <template>
-  <div :class="[...classes, { open }]">
+  <div :class="['Pokedex2D', { open }]">
     <div class="Case">
       <div class="CasePanel">
         <PokedexTopPanel :on="open" />
@@ -9,25 +9,14 @@
       </div>
     </div>
     <div class="Hinge" />
-    <PokedexCover
-      :open="open"
-      @close="open = false"
-      @open="open = true"
-    />
-    <audio
-      ref="beep"
-      @ended="ended"
-    >
-      <source
-        src="~/assets/audio/beep.mp3"
-        type="audio/mp3"
-      >
+    <PokedexCover :open="open" @close="open = false" @open="open = true" />
+    <audio ref="beep" @ended="ended">
+      <source src="~/assets/audio/beep.mp3" type="audio/mp3">
     </audio>
   </div>
 </template>
 
 <script setup>
-const classes = defineClasses('Pokedex2D')
 const open = ref(false)
 const beep = ref(null)
 watch(open, (value) => {
@@ -50,6 +39,7 @@ watch(open, (value) => {
   border-radius: $border-radius;
   pointer-events: none;
 }
+
 .Pokedex2D {
   --pokedex-shadow-color: var(--color-darken-primary);
   --pokedex-main-color: var(--color-primary);
@@ -62,13 +52,16 @@ watch(open, (value) => {
   height: 100%;
   max-width: min(80vw, 110vh);
   max-height: min(66vw, 88vh);
+
   .Case {
     display: flex;
     flex: 1;
     position: relative;
+
     &::before {
       @include shadow(16px 0 0 16px);
     }
+
     .CasePanel {
       position: relative;
       display: flex;
@@ -79,6 +72,7 @@ watch(open, (value) => {
       background: var(--pokedex-main-color);
       overflow: hidden;
     }
+
     .TopPanel {
       height: 10%;
       display: flex;
@@ -86,6 +80,7 @@ watch(open, (value) => {
       gap: 32px;
     }
   }
+
   .Hinge {
     position: relative;
     flex-basis: 5%;
@@ -93,11 +88,10 @@ watch(open, (value) => {
     top: 0%;
     height: 100%;
     background: var(--pokedex-main-color);
-    background-image: linear-gradient(
-      to bottom,
-      var(--pokedex-main-color) 10%,
-      var(--pokedex-shadow-color) 10%
-    );
+    background-image: linear-gradient(to bottom,
+        var(--pokedex-main-color) 10%,
+        var(--pokedex-shadow-color) 10%);
+
     &::before {
       content: '';
       position: absolute;
@@ -106,16 +100,15 @@ watch(open, (value) => {
       width: 100%;
       height: calc(90% + 16px);
       border-radius: 32px/16px;
-      background-image: linear-gradient(
-        to right,
-        var(--pokedex-main-color) 25%,
-        var(--pokedex-reflect-color) 25%,
-        var(--pokedex-reflect-color) 50%,
-        var(--pokedex-main-color) 50%,
-        var(--pokedex-main-color) 75%,
-        var(--pokedex-shadow-color) 75%
-      );
+      background-image: linear-gradient(to right,
+          var(--pokedex-main-color) 25%,
+          var(--pokedex-reflect-color) 25%,
+          var(--pokedex-reflect-color) 50%,
+          var(--pokedex-main-color) 50%,
+          var(--pokedex-main-color) 75%,
+          var(--pokedex-shadow-color) 75%);
     }
+
     &::after {
       content: '';
       height: 0;
@@ -131,6 +124,7 @@ watch(open, (value) => {
       transform: translateY(16px);
     }
   }
+
   .Controls {
     display: flex;
     align-items: flex-start;
@@ -139,6 +133,7 @@ watch(open, (value) => {
     gap: 16px;
   }
 }
+
 .MainPanelWrapper {
   display: flex;
   flex-direction: column;
@@ -149,12 +144,14 @@ watch(open, (value) => {
   overflow: hidden;
   clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0% 100%);
   padding: 25% 10% 10%;
+
   &::before,
   &::after {
     content: '';
     position: absolute;
     pointer-events: none;
   }
+
   &::before {
     top: 2%;
     width: 104%;
@@ -165,6 +162,7 @@ watch(open, (value) => {
     clip-path: polygon(0% 10%, 40% 10%, 60% 0%, 100% 0%, 100% 100%, 0% 100%);
     z-index: -1;
   }
+
   &::after {
     top: 2%;
     width: 92%;
@@ -173,22 +171,20 @@ watch(open, (value) => {
     background: var(--pokedex-shadow-color);
     transform: rotateY(180deg);
     z-index: -1;
-    clip-path: polygon(
-      0% 0%,
-      40% 0%,
-      60% 10%,
-      100% 10%,
-      100% 100%,
-      0% 100%,
-      0% 4px,
-      4px 4px,
-      4px calc(100% - 4px),
-      calc(100% - 4px) calc(100% - 4px),
-      calc(100% - 4px) calc(10% + 4px),
-      calc(60% - 2px) calc(10% + 4px),
-      calc(40% - 2px) 4px,
-      0% 4px
-    );
+    clip-path: polygon(0% 0%,
+        40% 0%,
+        60% 10%,
+        100% 10%,
+        100% 100%,
+        0% 100%,
+        0% 4px,
+        4px 4px,
+        4px calc(100% - 4px),
+        calc(100% - 4px) calc(100% - 4px),
+        calc(100% - 4px) calc(10% + 4px),
+        calc(60% - 2px) calc(10% + 4px),
+        calc(40% - 2px) 4px,
+        0% 4px);
   }
 }
 
@@ -196,6 +192,7 @@ watch(open, (value) => {
   .Pokedex2D {
     transition: transform 200ms ease;
     transform: translateX(25%);
+
     &.open {
       transform: translateX(0);
     }

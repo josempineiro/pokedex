@@ -1,10 +1,7 @@
 <template>
   <div :class="classes">
     <div class="RadarWrapper">
-      <RadarChart
-        :dataset="dataset"
-        :labels="labels"
-      />
+      <RadarChart :dataset="dataset" :labels="labels" />
     </div>
   </div>
 </template>
@@ -17,7 +14,6 @@ const props = defineProps({
   },
   variant: {
     type: String,
-    class: true,
     default: 'default',
     validator(value) {
       return ['default', 'mini'].includes(value)
@@ -25,7 +21,7 @@ const props = defineProps({
   },
 })
 
-const classes = defineClasses('PokemonStats')
+const classes = defineClasses('PokemonStats', props)
 
 const labels = computed(() =>
   props.pokemon.stats.map(({ stat: { name } }) => name)
@@ -47,6 +43,7 @@ const dataset = computed(() => [
   justify-content: center;
   flex: 1;
 }
+
 .RadarWrapper {
   width: 60%;
 }

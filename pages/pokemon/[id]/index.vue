@@ -1,24 +1,13 @@
 <template>
-  <PokedexMainPanel
-    :class="classes"
-    @click-left="prev"
-    @click-right="next"
-    @click-main="goStats"
-  >
+  <PokedexMainPanel :class="classes" @click-left="prev" @click-right="next" @click-main="goStats">
+
     <Head>
       <Title>{{ `Awesome Pokedex App: ${pokemon.name}` }}</Title>
-      <Meta
-        property="og:title"
-        :content="`Awesome Pokedex App: ${pokemon.name}`"
-      />
-      <Meta
-        property="og:image"
-        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`"
-      />
-      <Meta
-        property="twitter:image"
-        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`"
-      />
+      <Meta property="og:title" :content="`Awesome Pokedex App: ${pokemon.name}`" />
+      <Meta property="og:image"
+        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`" />
+      <Meta property="twitter:image"
+        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`" />
     </Head>
     <Pokemon :pokemon="pokemon" />
     <template #secondary-display>
@@ -30,22 +19,6 @@
 <script setup>
 definePageMeta({
   layout: 'default',
-  key: (route) => {
-    console.log(route)
-    return route.fullPath
-  },
-  pageTransition: {
-    appear: true,
-    name: 'PokemonPage',
-    duration: 500,
-    mode: 'out-in',
-  },
-  layoutTransition: {
-    appear: true,
-    name: 'Appear',
-    duration: 500,
-    mode: 'out-in',
-  },
 })
 
 const route = useRoute()
@@ -70,7 +43,7 @@ const classes = computed(() => [
 const goStats = () => {
   router.push({
     name: 'pokemon-id-stats',
-    params: { id: pokemon.id },
+    params: { id: pokemon.value.id },
   })
 }
 
@@ -90,15 +63,15 @@ const prev = () => {
 </script>
 
 <style>
-.PokemonPage-enter-active .Display > *,
-.PokemonPage-leave-active .Display > * {
+.PokemonPage-enter-active .Display>*,
+.PokemonPage-leave-active .Display>* {
   transition-property: all;
   transition-timing-function: ease-in-out;
   transition-duration: 500ms;
 }
 
-.PokemonPage-enter-from .Display > *,
-.PokemonPage-leave-to .Display > * {
+.PokemonPage-enter-from .Display>*,
+.PokemonPage-leave-to .Display>* {
   opacity: 0;
   pointer-events: none;
 }

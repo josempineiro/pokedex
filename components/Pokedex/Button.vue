@@ -9,7 +9,6 @@ const props = defineProps({
   variant: {
     type: String,
     default: 'circle',
-    class: true,
     validator(value) {
       return ['circle', 'rectangle', 'square'].includes(value)
     },
@@ -17,13 +16,12 @@ const props = defineProps({
   color: {
     type: String,
     default: 'black',
-    class: true,
     validator(value) {
       return ['black', 'blue', 'red', 'white'].includes(value)
     },
   },
 })
-const classes = defineClasses('Button')
+const classes = defineClasses('Button', props)
 </script>
 
 <style lang="scss">
@@ -34,18 +32,23 @@ const classes = defineClasses('Button')
   border: none;
   outline: none;
   cursor: pointer;
+
   &_black {
     --btn-color: rgb(0, 46, 40);
   }
+
   &_red {
     --btn-color: rgb(153, 6, 29);
   }
+
   &_yellow {
     --btn-color: rgb(238, 190, 88);
   }
+
   &_blue {
     --btn-color: rgb(24, 106, 156);
   }
+
   &:active {
     box-shadow: 0px 0px 0px 0px var(--pokedex-shadow-color);
   }
@@ -56,8 +59,14 @@ const classes = defineClasses('Button')
   height: 50px;
   border-radius: 100px;
 }
+
 .Button_square {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .Button_rectangle {
   width: 50px;
   height: 10px;

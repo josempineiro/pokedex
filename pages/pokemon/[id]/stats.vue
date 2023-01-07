@@ -1,24 +1,13 @@
 <template>
-  <PokedexMainPanel
-    @click-left="prev"
-    @click-right="next"
-    @click-main="goProfile"
-    class="PokemonStatsPage"
-  >
+  <PokedexMainPanel @click-left="prev" @click-right="next" @click-main="goProfile" class="PokemonStatsPage">
+
     <Head>
       <Title>{{ `Awesome Pokedex App: ${pokemon.name} stats` }}</Title>
-      <Meta
-        property="og:title"
-        :content="`Awesome Pokedex App: ${pokemon.name} stats`"
-      />
-      <Meta
-        property="og:image"
-        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`"
-      />
-      <Meta
-        property="twitter:image"
-        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`"
-      />
+      <Meta property="og:title" :content="`Awesome Pokedex App: ${pokemon.name} stats`" />
+      <Meta property="og:image"
+        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`" />
+      <Meta property="twitter:image"
+        :content="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`" />
     </Head>
     <PokemonStats :pokemon="pokemon" />
     <template #secondary-display>
@@ -33,13 +22,6 @@ const router = useRouter()
 
 definePageMeta({
   layout: 'default',
-  pageTransition: {
-    appear: true,
-    name: 'PokemonStatsPage',
-    duration: 500,
-    mode: 'out-in',
-  },
-  key: false,
 })
 
 const {
@@ -80,19 +62,20 @@ const prev = () => {
 .PokemonStatsPage .Pokemon {
   padding: 4px;
 }
+
 .PokemonStatsPage .PokemonInfo {
   display: none;
 }
 
-.PokemonStatsPage-enter-active .MainControlsDisplay > *,
-.PokemonStatsPage-leave-active .MainControlsDisplay > * {
+.PokemonStatsPage-enter-active .MainControlsDisplay>*,
+.PokemonStatsPage-leave-active .MainControlsDisplay>* {
   transition-property: all;
   transition-timing-function: ease-in-out;
   transition-duration: 500ms;
 }
 
-.PokemonStatsPage-enter-from .MainControlsDisplay > *,
-.PokemonStatsPage-leave-to .MainControlsDisplay > * {
+.PokemonStatsPage-enter-from .MainControlsDisplay>*,
+.PokemonStatsPage-leave-to .MainControlsDisplay>* {
   opacity: 0;
   pointer-events: none;
 }

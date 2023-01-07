@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="HomePage"
-    @click="navigateToPokedex"
-  >
+  <div class="HomePage" @click="navigateToPokedex">
     <button class="StartButton">
       <PokedexIcon />
     </button>
@@ -13,10 +10,6 @@
 <script setup>
 definePageMeta({
   layout: false,
-  key: (route) => {
-    console.log(route)
-    return route.fullPath
-  },
   pageTransition: {
     appear: true,
     name: 'HomePage',
@@ -45,20 +38,25 @@ onMounted(() => {
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.3));
     transform: scale(1);
   }
+
   2% {
     transform: scale(1.1);
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.3));
   }
+
   4% {
     transform: scale(1.1) rotate(15deg);
   }
+
   6% {
     transform: scale(1.1) rotate(-15deg);
   }
+
   8% {
     transform: scale(1.1);
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.3));
   }
+
   10% {
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.3));
     transform: scale(1);
@@ -69,13 +67,16 @@ onMounted(() => {
   33% {
     transform: scale(1.1) rotate(-15deg);
   }
+
   66% {
     transform: scale(1.1) rotate(15deg);
   }
+
   100% {
     transform: scale(1) rotate(0);
   }
 }
+
 .HomePage {
   display: flex;
   flex-direction: column;
@@ -119,10 +120,12 @@ onMounted(() => {
   from {
     width: 0ch;
   }
+
   to {
     width: 10ch;
   }
 }
+
 .LoadingMessage {
   width: 0ch;
   white-space: pre;
