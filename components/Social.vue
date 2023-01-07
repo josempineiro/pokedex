@@ -1,7 +1,7 @@
 <template>
   <ul :class="classes">
     <li v-for="item in social" :key="item.href">
-      <a :href="item.href" target="_blank">
+      <a :href="item.href" class="SocialLink" target="_blank">
         <IconGithub v-if="item.icon === 'Github'" class="SocialIcon" />
         <IconLinkedIn v-else-if="item.icon === 'LinkedIn'" class="SocialIcon" />
       </a>
@@ -27,6 +27,13 @@ const {
   display: flex;
   gap: 1rem;
 }
+
+.SocialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .SocialIcon {
   width: 2rem;
   height: 2rem;

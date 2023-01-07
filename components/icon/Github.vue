@@ -19,7 +19,8 @@ const props = defineProps({
 
 <style lang="scss">
 .GithubIcon {
-  width: 100%;
-  height: 100%;
+  width: 2rem;
+  height: 2rem;
+  fill: currentColor;
 }
 </style>
